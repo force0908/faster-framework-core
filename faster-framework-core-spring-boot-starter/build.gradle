@@ -1,0 +1,3 @@
+dependencies {
+    compile project(":faster-framework-core-spring-boot-autoconfigure")
+}

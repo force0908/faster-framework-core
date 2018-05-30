@@ -1,0 +1,26 @@
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+  jackson:
+    default-property-inclusion: non_null
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+    generator:
+      WRITE_NUMBERS_AS_STRINGS: true
+  mvc:
+    date-format: yyyy-MM-dd HH:mm:ss
+  aop:
+    proxy-target-class: true
+
+---
+spring:
+  profiles: prod
+logging:
+  level:
+    root: warn
+server:
+  tomcat:
+    accept-count: 250
+    max-threads: 500
+    max-connections: 1000
