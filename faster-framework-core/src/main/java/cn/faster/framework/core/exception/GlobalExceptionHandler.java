@@ -1,6 +1,6 @@
 package cn.faster.framework.core.exception;
 
-import cn.faster.framework.core.exception.model.BasicError;
+import cn.faster.framework.core.exception.model.BasisErrorCode;
 import cn.faster.framework.core.exception.model.ErrorResponseEntity;
 import cn.faster.framework.core.exception.model.ResultError;
 import org.apache.ibatis.exceptions.PersistenceException;
@@ -25,31 +25,29 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public Object handleException(MethodArgumentNotValidException exception) {
         FieldError fieldError = exception.getBindingResult().getFieldError();
-        ResultError resultMsg = new ResultError(BasicError.VALIDATION_FAILED.getValue(), fieldError.getDefaultMessage());
-        return new ErrorResponseEntity(resultMsg, HttpStatus.BAD_REQUEST);
+        ResultError resultMsg = new ResultError(BasisErrorCode.VALIDATION_FAILED.getValue(), fieldError.getDefaultMessage());
+        return ErrorResponseEntity.error(resultMsg, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(BindException.class)
     public Object handleException(BindException exception) {
         FieldError fieldError = exception.getBindingResult().getFieldError();
-        ResultError resultMsg = new ResultError(BasicError.VALIDATION_FAILED.getValue(), fieldError.getField() + fieldError.getDefaultMessage());
-        return new ErrorResponseEntity(resultMsg, HttpStatus.BAD_REQUEST);
+        ResultError resultMsg = new ResultError(BasisErrorCode.VALIDATION_FAILED.getValue(), fieldError.getField() + fieldError.getDefaultMessage());
+        return ErrorResponseEntity.error(resultMsg, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(TokenValidException.class)
     public Object handleException(TokenValidException exception) {
-        return new ErrorResponseEntity(exception.getErrorCode(), HttpStatus.UNAUTHORIZED);
+        return ErrorResponseEntity.error(exception.getErrorCode(), HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(SQLException.class)
     public Object handleException(SQLException exception) {
-        exception.printStackTrace();
-        return new ErrorResponseEntity(BasicError.SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
+        return ErrorResponseEntity.error(BasisErrorCode.SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(PersistenceException.class)
     public Object handleException(PersistenceException exception) {
-        exception.printStackTrace();
-        return new ErrorResponseEntity(BasicError.SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
+        return ErrorResponseEntity.error(BasisErrorCode.SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

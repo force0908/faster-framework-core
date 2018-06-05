@@ -1,6 +1,6 @@
 package cn.faster.framework.core.auth.admin;
 
-import cn.faster.framework.core.exception.model.BasicError;
+import cn.faster.framework.core.exception.model.BasisErrorCode;
 import cn.faster.framework.core.exception.model.ErrorResponseEntity;
 import cn.faster.framework.core.exception.model.ResultError;
 import org.apache.shiro.authz.AuthorizationException;
@@ -73,8 +73,8 @@ public class ShiroConfiguration {
         @ResponseBody
         @ExceptionHandler(value = AuthorizationException.class)
         public Object handleException(AuthorizationException exception) {
-            ResultError resultMsg = new ResultError(BasicError.NOT_HAVE_PERMISSION.getValue(), BasicError.NOT_HAVE_PERMISSION.getDescription() + "：" + exception.getMessage());
-            return new ErrorResponseEntity(resultMsg, HttpStatus.BAD_REQUEST);
+            ResultError resultMsg = new ResultError(BasisErrorCode.NOT_HAVE_PERMISSION.getValue(), BasisErrorCode.NOT_HAVE_PERMISSION.getDescription() + "：" + exception.getMessage());
+            return ErrorResponseEntity.error(resultMsg, HttpStatus.BAD_REQUEST);
         }
     }
 }

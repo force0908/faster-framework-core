@@ -1,12 +1,13 @@
 package cn.faster.framework.core.auth.admin;
 
-import cn.faster.framework.core.exception.model.BasicError;
+import cn.faster.framework.core.exception.model.BasisErrorCode;
 import cn.faster.framework.core.exception.model.ResultError;
 import com.alibaba.fastjson.JSON;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.web.filter.authc.AuthenticatingFilter;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -48,7 +49,7 @@ public class ShiroFilter extends AuthenticatingFilter {
         httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         httpResponse.setContentType("application/json;charset=utf-8");
         try (PrintWriter printWriter = httpResponse.getWriter()) {
-            printWriter.write(JSON.toJSONString(new ResultError(BasicError.TOKEN_INVALID)));
+            printWriter.write(JSON.toJSONString(new ResultError(BasisErrorCode.TOKEN_INVALID, HttpStatus.UNAUTHORIZED)));
             printWriter.flush();
         } catch (IOException ignore) {
         }

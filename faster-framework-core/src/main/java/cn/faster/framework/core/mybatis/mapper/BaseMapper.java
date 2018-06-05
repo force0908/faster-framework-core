@@ -26,4 +26,13 @@ public interface BaseMapper<T>
      */
     @SelectProvider(type = BaseSelectPageProvider.class, method = "dynamicSQL")
     Page<T> selectPage(T record);
+
+    /**
+     * 根据Example条件进行分页查询
+     *
+     * @param example
+     * @return
+     */
+    @SelectProvider(type = BaseSelectPageProvider.class, method = "dynamicSQL")
+    Page<T> selectPageByExample(Object example);
 }

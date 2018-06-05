@@ -8,19 +8,22 @@ import org.springframework.http.ResponseEntity;
  */
 @SuppressWarnings("unchecked")
 public class ErrorResponseEntity extends ResponseEntity {
-    public ErrorResponseEntity(HttpStatus statusCode) {
+    private ErrorResponseEntity(HttpStatus statusCode) {
         super(statusCode);
     }
 
-    public ErrorResponseEntity(ErrorCode body, HttpStatus status) {
+    private ErrorResponseEntity(ErrorCode body, HttpStatus status) {
         super(new ResultError(body, status), status);
     }
 
-    public ErrorResponseEntity(ResultError resultError, HttpStatus status) {
+    private ErrorResponseEntity(ResultError resultError, HttpStatus status) {
         super(resultError, status);
     }
 
     public static ErrorResponseEntity error(ErrorCode body, HttpStatus status) {
         return new ErrorResponseEntity(body, status);
+    }
+    public static ErrorResponseEntity error(ResultError resultError, HttpStatus status) {
+        return new ErrorResponseEntity(resultError, status);
     }
 }

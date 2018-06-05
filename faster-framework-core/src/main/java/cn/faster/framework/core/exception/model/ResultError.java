@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 public class ResultError {
     private long timestamp;
     private int status;
-    private String error;
     private String path;
     private int code;
     private String message;
@@ -28,14 +27,6 @@ public class ResultError {
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    public String getError() {
-        return error;
-    }
-
-    public void setError(String error) {
-        this.error = error;
     }
 
     public String getPath() {
@@ -84,7 +75,6 @@ public class ResultError {
         this.code = errorCode.getValue();
         this.message = errorCode.getDescription();
         this.status = httpStatus.value();
-        this.error = httpStatus.name();
     }
 
 

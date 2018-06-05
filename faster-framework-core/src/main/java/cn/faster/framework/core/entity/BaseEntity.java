@@ -1,12 +1,10 @@
 package cn.faster.framework.core.entity;
 
 import cn.faster.framework.core.sequence.Sequence;
-import cn.faster.framework.core.mybatis.model.PagerBean;
+import cn.faster.framework.core.mybatis.model.BasePager;
 import cn.faster.framework.core.web.context.WebContextFacade;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -17,7 +15,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public abstract class BaseEntity extends PagerBean implements Serializable {
+public abstract class BaseEntity extends BasePager implements Serializable {
     @Id
     private Long id;
     private Long createBy;
@@ -26,7 +24,7 @@ public abstract class BaseEntity extends PagerBean implements Serializable {
     private LocalDateTime updateDate;
     private Integer sort;
     private String remark;
-    private Integer deleted = 0;
+    private Integer deleted;
 
     /**
      * 预插入方法
@@ -38,6 +36,7 @@ public abstract class BaseEntity extends PagerBean implements Serializable {
         Long userId = WebContextFacade.getRequestContext().getUserId();
         this.createBy = userId;
         this.updateBy = userId;
+        this.deleted = 0;
     }
 
     /**

@@ -7,7 +7,7 @@ package cn.faster.framework.core.exception.model;
  * @Time: 11:55
  * @Description:
  */
-public enum BasicError implements ErrorCode {
+public enum BasisErrorCode implements ErrorCode {
     SERVER_ERROR(1000, "服务器正在维护"),
     VALIDATION_FAILED(1001, "参数异常"),
     TOKEN_INVALID(1002, "登录状态过期"),
@@ -17,10 +17,10 @@ public enum BasicError implements ErrorCode {
     private int value;
     private String description;
 
-    BasicError() {
+    BasisErrorCode() {
     }
 
-    BasicError(int value, String description) {
+    BasisErrorCode(int value, String description) {
         this.value = value;
         this.description = description;
     }
