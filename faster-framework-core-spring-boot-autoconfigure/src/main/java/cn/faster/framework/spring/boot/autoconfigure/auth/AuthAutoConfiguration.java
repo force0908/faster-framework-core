@@ -27,6 +27,7 @@ public class AuthAutoConfiguration {
     public JwtService jwtService() {
         JwtService jwtService = new JwtService();
         jwtService.setBase64Security(this.authProperties.getJwt().getBase64Secret());
+        jwtService.setMultipartTerminal(authProperties.isMultipartTerminal());
         return jwtService;
     }
 

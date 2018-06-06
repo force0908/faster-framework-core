@@ -21,7 +21,7 @@ public class AuthProperties {
     /**
      * token是否支持多终端，同时受缓存影响
      */
-    private boolean multipartTerminal = false;
+    private boolean multipartTerminal = true;
 
     private JwtProperties jwt = new JwtProperties();
 

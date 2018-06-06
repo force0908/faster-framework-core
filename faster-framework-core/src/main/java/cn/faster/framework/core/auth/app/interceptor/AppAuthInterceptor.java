@@ -1,13 +1,13 @@
 package cn.faster.framework.core.auth.app.interceptor;
 
+import cn.faster.framework.core.auth.JwtService;
 import cn.faster.framework.core.auth.app.AppAuthContext;
 import cn.faster.framework.core.auth.app.AppAuthContextFacade;
 import cn.faster.framework.core.auth.app.anno.Login;
-import cn.faster.framework.core.exception.TokenValidException;
-import cn.faster.framework.core.auth.JwtService;
 import cn.faster.framework.core.cache.context.CacheFacade;
-import cn.faster.framework.core.web.context.SpringAppContextFacade;
+import cn.faster.framework.core.exception.TokenValidException;
 import cn.faster.framework.core.exception.model.BasisErrorCode;
+import cn.faster.framework.core.web.context.SpringAppContextFacade;
 import io.jsonwebtoken.Claims;
 import org.springframework.http.HttpHeaders;
 import org.springframework.util.StringUtils;
@@ -37,10 +37,10 @@ public class AppAuthInterceptor implements HandlerInterceptor {
                 Claims claims = jwtService.parseToken(jwtToken);
                 if (claims != null) {
                     String userId = claims.getAudience();
-                    //如果当前支持缓存，并且不允许多端登录，验证缓存中的token是否与当前token相等。
+                    //如果当前不允许多端登录，验证缓存中的token是否与当前token相等。
                     //如果为多端登录，则不需要验证缓存,只需要验证秘钥是否正确即可。
-                    if (!CacheFacade.local && !jwtService.isMultipartTerminal()) {
-                        String cacheToken = CacheFacade.get(userId);
+                    if (!jwtService.isMultipartTerminal()) {
+                        String cacheToken = CacheFacade.get(JwtService.JWT_TOKEN_PREFIX + userId);
                         if (!StringUtils.isEmpty(cacheToken) && jwtToken.equals(cacheToken)) {
                             appAuthContext = new AppAuthContext(userId);
                         }

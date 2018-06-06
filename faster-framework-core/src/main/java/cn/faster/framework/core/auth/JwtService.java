@@ -19,6 +19,7 @@ import java.util.Date;
 public class JwtService {
     private String base64Security;
     private boolean multipartTerminal;
+    public static final String JWT_TOKEN_PREFIX = "jwt-token:";
 
     /**
      * 解密，使用项目配置秘钥
@@ -52,9 +53,9 @@ public class JwtService {
      */
     public String createToken(Object audience, long expSecond) {
         String token = createToken(audience, expSecond, this.base64Security);
-        //如果缓存非本地模式，并且不允许多端登录，设置token
-        if (!CacheFacade.local && !multipartTerminal) {
-            CacheFacade.set(audience.toString(), token, expSecond);
+        //如果不允许多端登录，设置token到缓存中
+        if (!multipartTerminal) {
+            CacheFacade.set(JWT_TOKEN_PREFIX + audience.toString(), token, expSecond);
         }
         return token;
     }
@@ -78,6 +79,7 @@ public class JwtService {
         JwtBuilder builder = Jwts.builder()
                 .setHeaderParam("typ", "JWT")
                 .setAudience(audience.toString())
+                .claim("timestamp", nowMillis)
                 .signWith(signatureAlgorithm, signingKey);
         //添加Token过期时间
         if (expSecond > 0) {

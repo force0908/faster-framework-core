@@ -58,7 +58,6 @@ public class ShiroConfiguration {
     public SecurityManager securityManager(AuthorizingRealm authorizingRealm) {
         authorizingRealm.setCacheManager(cacheManager());
         authorizingRealm.setAuthorizationCachingEnabled(true);
-        authorizingRealm.setAuthenticationCachingEnabled(true);
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(authorizingRealm);
         securityManager.setCacheManager(cacheManager());
@@ -68,27 +67,6 @@ public class ShiroConfiguration {
         subjectDAO.setSessionStorageEvaluator(defaultSessionStorageEvaluator);
         securityManager.setSubjectDAO(subjectDAO);
         return securityManager;
-    }
-
-    /**
-     * 拦截器
-     *
-     * @param securityManager
-     * @return
-     */
-    @Bean
-    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
-        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-        shiroFilterFactoryBean.setSecurityManager(securityManager);
-        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        filterChainDefinitionMap.put("/logout", "logout");
-        filterChainDefinitionMap.put("/login", "anon");
-        filterChainDefinitionMap.put("/**", "jwt");
-        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
-        Map<String, Filter> filters = new LinkedHashMap<>();
-        filters.put("jwt", new ShiroFilter());
-        shiroFilterFactoryBean.setFilters(filters);
-        return shiroFilterFactoryBean;
     }
 
 
