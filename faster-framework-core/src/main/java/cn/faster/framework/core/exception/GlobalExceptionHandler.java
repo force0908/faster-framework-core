@@ -3,6 +3,7 @@ package cn.faster.framework.core.exception;
 import cn.faster.framework.core.exception.model.BasisErrorCode;
 import cn.faster.framework.core.exception.model.ErrorResponseEntity;
 import cn.faster.framework.core.exception.model.ResultError;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ import java.sql.SQLException;
 @ControllerAdvice
 @ResponseBody
 @Configuration
+@Slf4j
 public class GlobalExceptionHandler {
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public Object handleException(MethodArgumentNotValidException exception) {
@@ -43,11 +45,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(SQLException.class)
     public Object handleException(SQLException exception) {
+        exception.printStackTrace();
         return ErrorResponseEntity.error(BasisErrorCode.SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(PersistenceException.class)
     public Object handleException(PersistenceException exception) {
+        exception.printStackTrace();
         return ErrorResponseEntity.error(BasisErrorCode.SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

@@ -2,6 +2,7 @@ package cn.faster.framework.spring.boot.autoconfigure.cache;
 
 import cn.faster.framework.core.cache.context.CacheFacade;
 import cn.faster.framework.core.cache.service.ICacheService;
+import cn.faster.framework.core.cache.service.impl.LocalCacheService;
 import cn.faster.framework.core.cache.service.impl.RedisCacheService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -22,12 +23,7 @@ public class CacheAutoConfiguration {
     @ConditionalOnMissingBean(ICacheService.class)
     @ConditionalOnProperty(prefix = "faster.cache", name = "local", havingValue = "true", matchIfMissing = true)
     public ICacheService localCacheService() {
-        return new ICacheService() {
-            @Override
-            public String toString() {
-                return "local cache";
-            }
-        };
+        return new LocalCacheService();
     }
 
     @Bean("cacheService")

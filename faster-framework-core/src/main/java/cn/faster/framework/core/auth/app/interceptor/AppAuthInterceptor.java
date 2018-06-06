@@ -40,7 +40,7 @@ public class AppAuthInterceptor implements HandlerInterceptor {
                     //如果当前支持缓存，并且不允许多端登录，验证缓存中的token是否与当前token相等。
                     //如果为多端登录，则不需要验证缓存,只需要验证秘钥是否正确即可。
                     if (!CacheFacade.local && !jwtService.isMultipartTerminal()) {
-                        String cacheToken = CacheFacade.getObject(userId);
+                        String cacheToken = CacheFacade.get(userId);
                         if (!StringUtils.isEmpty(cacheToken) && jwtToken.equals(cacheToken)) {
                             appAuthContext = new AppAuthContext(userId);
                         }

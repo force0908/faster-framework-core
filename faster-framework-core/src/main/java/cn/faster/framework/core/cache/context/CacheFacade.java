@@ -1,12 +1,10 @@
 package cn.faster.framework.core.cache.context;
 
 
-import cn.faster.framework.core.cache.entity.CacheEntity;
 import cn.faster.framework.core.cache.service.ICacheService;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,11 +25,8 @@ public class CacheFacade {
      * @param value
      * @param exp   失效时间(秒)
      */
-    public static void set(String key, Object value, long exp) {
-        CacheEntity cacheBean = new CacheEntity();
-        cacheBean.setDefaultType(value.getClass());
-        cacheBean.setJsonValue(JSON.toJSONString(value));
-        cacheService.set(key, JSON.toJSONString(cacheBean), exp);
+    public static <V> void set(String key, V value, long exp) {
+        cacheService.set(key, value, exp);
     }
 
     /**
@@ -39,37 +34,8 @@ public class CacheFacade {
      *
      * @param key
      */
-    public static void delete(String key) {
-        cacheService.delete(key);
-    }
-
-    /**
-     * 从缓存获得对象
-     *
-     * @param key
-     * @return
-     */
-    private static CacheEntity getByCache(String key) {
-        Object value = cacheService.get(key);
-        if (value == null) {
-            return null;
-        }
-        return JSON.parseObject(value.toString(), CacheEntity.class);
-    }
-
-
-    /**
-     * 获取缓存对象,解析为默认的class对象
-     *
-     * @param key
-     * @return
-     */
-    public static <T> T getObject(String key) {
-        CacheEntity cacheBean = getByCache(key);
-        if (cacheBean == null) {
-            return null;
-        }
-        return (T) JSON.parseObject(cacheBean.getJsonValue(), cacheBean.getDefaultType());
+    public static <V> V delete(String key) {
+        return (V) cacheService.delete(key);
     }
 
     /**
@@ -78,31 +44,49 @@ public class CacheFacade {
      * @param key
      * @return
      */
-    public static <T> T getObject(String key, TypeReference<T> typeReference) {
-        CacheEntity cacheBean = getByCache(key);
-        if (cacheBean == null) {
-            return null;
-        }
-        return JSON.parseObject(cacheBean.getJsonValue(), typeReference);
-    }
-
-    /**
-     * 获取缓存数据,如果关键字不存在返回null
-     *
-     * @param key
-     * @return
-     */
-    public static <T> List<T> getList(String key, Class type) {
-        CacheEntity cacheBean = getByCache(key);
-        if (cacheBean == null) {
-            return null;
-        }
-        return JSON.parseArray(cacheBean.getJsonValue(), type);
+    public static <V> V get(String key) {
+        return (V) cacheService.get(key);
     }
 
     public static CacheFacade initCache(ICacheService cacheService, boolean local) {
         CacheFacade.cacheService = cacheService;
         CacheFacade.local = local;
         return new CacheFacade();
+    }
+
+    /**
+     * 清空以cachePrefix开头的缓存
+     */
+    public static void clear(String cachePrefix) {
+        cacheService.clear(cachePrefix);
+    }
+
+    /**
+     * 获取以cachePrefix开头的缓存数量
+     *
+     * @param cachePrefix
+     */
+    public static int size(String cachePrefix) {
+        return cacheService.size(cachePrefix);
+    }
+
+    /**
+     * 获取以cachePrefix开头的缓存键列表
+     * @param cachePrefix
+     * @param <K>
+     * @return
+     */
+    public static <K> Set<K> keys(String cachePrefix) {
+        return cacheService.keys(cachePrefix);
+    }
+
+    /**
+     * 获取以cachePrefix开头的缓存值
+     * @param cachePrefix
+     * @param <V>
+     * @return
+     */
+    public static <V> Collection<V> values(String cachePrefix) {
+        return cacheService.values(cachePrefix);
     }
 }

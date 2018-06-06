@@ -1,37 +1,16 @@
 package cn.faster.framework.core.cache.entity;
 
+import lombok.Data;
+
 /**
  * Created by zhangbowen on 2016/12/5.
  */
-public class LocalCacheEntity {
+@Data
+public class LocalCacheEntity<V> {
     //对象
-    private Object obj;
+    private V value;
     //缓存时间
-    private int exp;
+    private long exp;
     //存入时间
     private long saveTime;
-
-    public long getSaveTime() {
-        return saveTime;
-    }
-
-    public void setSaveTime(long saveTime) {
-        this.saveTime = saveTime;
-    }
-
-    public Object getObj() {
-        return obj;
-    }
-
-    public void setObj(Object obj) {
-        this.obj = obj;
-    }
-
-    public int getExp() {
-        return exp;
-    }
-
-    public void setExp(int exp) {
-        this.exp = exp;
-    }
 }

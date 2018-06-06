@@ -1,9 +1,13 @@
 package cn.faster.framework.core.auth.admin;
 
+import cn.faster.framework.core.auth.admin.cache.ShiroCacheManager;
 import cn.faster.framework.core.exception.model.BasisErrorCode;
 import cn.faster.framework.core.exception.model.ErrorResponseEntity;
 import cn.faster.framework.core.exception.model.ResultError;
 import org.apache.shiro.authz.AuthorizationException;
+import org.apache.shiro.cache.Cache;
+import org.apache.shiro.cache.CacheException;
+import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.mgt.SecurityManager;
@@ -29,7 +33,51 @@ import java.util.Map;
 @Configuration
 public class ShiroConfiguration {
     @Bean
-    public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
+    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+        return new LifecycleBeanPostProcessor();
+    }
+
+
+    /**
+     * 缓存
+     *
+     * @return
+     */
+    @Bean
+    public CacheManager cacheManager() {
+        return new ShiroCacheManager();
+    }
+
+    /**
+     * 权限管理器
+     *
+     * @param authorizingRealm
+     * @return
+     */
+    @Bean
+    public SecurityManager securityManager(AuthorizingRealm authorizingRealm) {
+        authorizingRealm.setCacheManager(cacheManager());
+        authorizingRealm.setAuthorizationCachingEnabled(true);
+        authorizingRealm.setAuthenticationCachingEnabled(true);
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        securityManager.setRealm(authorizingRealm);
+        securityManager.setCacheManager(cacheManager());
+        DefaultSubjectDAO subjectDAO = new DefaultSubjectDAO();
+        DefaultSessionStorageEvaluator defaultSessionStorageEvaluator = new DefaultSessionStorageEvaluator();
+        defaultSessionStorageEvaluator.setSessionStorageEnabled(false);
+        subjectDAO.setSessionStorageEvaluator(defaultSessionStorageEvaluator);
+        securityManager.setSubjectDAO(subjectDAO);
+        return securityManager;
+    }
+
+    /**
+     * 拦截器
+     *
+     * @param securityManager
+     * @return
+     */
+    @Bean
+    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
@@ -43,29 +91,19 @@ public class ShiroConfiguration {
         return shiroFilterFactoryBean;
     }
 
-    @Bean
-    public SecurityManager securityManager(AuthorizingRealm authorizingRealm) {
-        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(authorizingRealm);
-        DefaultSubjectDAO subjectDAO = new DefaultSubjectDAO();
-        DefaultSessionStorageEvaluator defaultSessionStorageEvaluator = new DefaultSessionStorageEvaluator();
-        defaultSessionStorageEvaluator.setSessionStorageEnabled(false);
-        subjectDAO.setSessionStorageEvaluator(defaultSessionStorageEvaluator);
-        securityManager.setSubjectDAO(subjectDAO);
-        return securityManager;
-    }
 
-    @Bean
-    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
-        return new LifecycleBeanPostProcessor();
-    }
-
+    /**
+     * shiro 注解
+     * @param securityManager
+     * @return
+     */
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;
     }
+
 
     @ControllerAdvice
     @Configuration
