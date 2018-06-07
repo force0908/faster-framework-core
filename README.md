@@ -1,5 +1,5 @@
-#faster-framework-core
-##Getting Start
+# faster-framework-core
+## Getting Start
 
 - 发布仓库到本地
 
