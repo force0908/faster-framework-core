@@ -13,10 +13,4 @@ public interface TreeNode {
     List<TreeNode> getChildren();
 
     void setChildren(List<TreeNode> children);
-
-    default Integer getIsLeaf() {
-        List<TreeNode> children = getChildren();
-        boolean isLeaf = children == null || children.size() == 0;
-        return isLeaf ? 1 : 0;
-    }
 }
