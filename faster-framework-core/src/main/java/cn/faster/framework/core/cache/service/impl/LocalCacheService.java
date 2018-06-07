@@ -2,7 +2,7 @@ package cn.faster.framework.core.cache.service.impl;
 
 import cn.faster.framework.core.cache.entity.LocalCacheEntity;
 import cn.faster.framework.core.cache.service.ICacheService;
-import org.apache.shiro.util.SoftHashMap;
+import org.springframework.util.ConcurrentReferenceHashMap;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  * @author zhangbowen 2018/6/6 14:37
  */
 public class LocalCacheService<V> implements ICacheService<V> {
-    private Map<String, LocalCacheEntity<V>> softHashMap = new SoftHashMap<>();
+    private Map<String, LocalCacheEntity<V>> softHashMap = new ConcurrentReferenceHashMap<>();
 
     @Override
     public void set(String key, V value, long exp) {
