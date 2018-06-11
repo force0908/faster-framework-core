@@ -6,11 +6,11 @@ import tk.mybatis.mapper.mapperhelper.MapperTemplate;
 import tk.mybatis.mapper.mapperhelper.SqlHelper;
 
 /**
- * @author zhangbowen 2018/5/29 12:25
+ * @author zhangbowen 2018/6/11 15:05
  */
-public class BaseSelectPageProvider extends MapperTemplate {
+public class BaseProvider extends MapperTemplate {
 
-    public BaseSelectPageProvider(Class<?> mapperClass, MapperHelper mapperHelper) {
+    public BaseProvider(Class<?> mapperClass, MapperHelper mapperHelper) {
         super(mapperClass, mapperHelper);
     }
 

@@ -1,7 +1,7 @@
 package cn.faster.framework.core.entity;
 
-import cn.faster.framework.core.sequence.Sequence;
 import cn.faster.framework.core.mybatis.model.BasePager;
+import cn.faster.framework.core.utils.sequence.Sequence;
 import cn.faster.framework.core.web.context.WebContextFacade;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -37,6 +37,9 @@ public abstract class BaseEntity extends BasePager implements Serializable {
         this.createBy = userId;
         this.updateBy = userId;
         this.deleted = 0;
+        if (this.sort == null) {
+            this.sort = 0;
+        }
     }
 
     /**

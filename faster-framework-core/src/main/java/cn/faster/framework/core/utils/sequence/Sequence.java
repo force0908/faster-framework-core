@@ -1,4 +1,4 @@
-package cn.faster.framework.core.sequence;
+package cn.faster.framework.core.utils.sequence;
 
 /**
  * @author zhangbowen 2018/5/28 16:33

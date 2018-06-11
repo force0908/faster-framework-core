@@ -1,4 +1,4 @@
-package cn.faster.framework.core.sequence;
+package cn.faster.framework.core.utils.sequence;
 
 import java.sql.Timestamp;
 import java.util.concurrent.Executors;
