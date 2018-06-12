@@ -7,7 +7,7 @@ subprojects { ->
     apply plugin: 'java'
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'maven'
-    group 'cn.faster.framework'
+    group 'com.github.faster-framework'
     sourceCompatibility = 1.8
     repositories {
         mavenLocal()

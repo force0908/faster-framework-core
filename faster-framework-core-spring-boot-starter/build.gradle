@@ -1,3 +1,3 @@
 dependencies {
-    compile "cn.faster.framework:faster-framework-core-spring-boot-autoconfigure:${version}"
+    compile "com.github.faster-framework:faster-framework-core-spring-boot-autoconfigure:${version}"
 }

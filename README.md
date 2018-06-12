@@ -23,5 +23,5 @@ repositories {
 - 引入
 
 ```
-compile 'cn.faster.framework:faster-framework-core-spring-boot-starter:1.0-SNAPSHOT'
+compile 'com.github.faster.framework:faster-framework-core-spring-boot-starter:1.0-SNAPSHOT'
 ```

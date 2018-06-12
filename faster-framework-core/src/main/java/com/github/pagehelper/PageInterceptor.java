@@ -1,7 +1,7 @@
 package com.github.pagehelper;
 
-import cn.faster.framework.core.mybatis.pagination.bean.ConvertCountSqlBean;
-import cn.faster.framework.core.mybatis.pagination.dialect.CustomPagerHelper;
+import com.github.faster.framework.core.mybatis.pagination.bean.ConvertCountSqlBean;
+import com.github.faster.framework.core.mybatis.pagination.dialect.CustomPagerHelper;
 import com.github.pagehelper.cache.Cache;
 import com.github.pagehelper.cache.CacheFactory;
 import com.github.pagehelper.util.MSUtils;
@@ -38,7 +38,7 @@ import java.util.Properties;
 public class PageInterceptor implements Interceptor {
     private Cache<CacheKey, MappedStatement> msCountMap = null;
     private Dialect dialect;
-    private static final String DEFAULT_DIALECT_CLASS = "cn.faster.framework.core.mybatis.pagination.dialect.CustomPagerHelper";
+    private static final String DEFAULT_DIALECT_CLASS = "com.github.faster.framework.core.mybatis.pagination.dialect.CustomPagerHelper";
     private Field additionalParametersField;
 
     @Override
