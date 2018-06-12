@@ -1,11 +1,15 @@
 package cn.faster.framework.core.utils;
 
+import org.springframework.cglib.beans.BeanMap;
 import org.springframework.util.DigestUtils;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * Created by zhangbowen on 2015/12/4.
@@ -69,4 +73,35 @@ public class Utils {
         return DigestUtils.md5DigestAsHex(str.getBytes());
     }
 
+    /**
+     * bean转map
+     *
+     * @param bean
+     * @param <T>
+     * @return
+     */
+    public static <T> Map<String, Object> beanToMap(T bean) {
+        Map<String, Object> map = new HashMap<>();
+        if (bean != null) {
+            BeanMap beanMap = BeanMap.create(bean);
+            for (Object key : beanMap.keySet()) {
+                map.put(key + "", beanMap.get(key));
+            }
+        }
+        return map;
+    }
+
+    /**
+     * 排序签名
+     *
+     * @param o      要签名的对象
+     * @param secret 秘钥
+     */
+    public static <T> String signWithSort(T o, String secret) {
+        Map<String, Object> map = beanToMap(o);
+        String signStr = map.keySet().stream().sorted()
+                .map(key -> key.concat("=").concat(map.get(key) + ""))
+                .collect(Collectors.joining("&"));
+        return md5(signStr + secret);
+    }
 }

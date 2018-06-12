@@ -1,4 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 cn.faster.framework.spring.boot.autoconfigure.cache.CacheAutoConfiguration,\
 cn.faster.framework.spring.boot.autoconfigure.web.WebAutoConfiguration,\
-cn.faster.framework.spring.boot.autoconfigure.mybatis.TkMybatisAutoConfiguration
+cn.faster.framework.spring.boot.autoconfigure.mybatis.TkMybatisAutoConfiguration,\
+cn.faster.framework.spring.boot.autoconfigure.upload.UploadAutoConfiguration

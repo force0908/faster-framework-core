@@ -22,15 +22,4 @@ public class AuthProperties {
      * token是否支持多终端，同时受缓存影响
      */
     private boolean multipartTerminal = true;
-
-    private JwtProperties jwt = new JwtProperties();
-
-    @Data
-    public static class JwtProperties {
-        /**
-         * base64秘钥
-         */
-        private String base64Secret = "ZmFzdGVyLWZyYW1ld29yaw==";
-
-    }
 }
