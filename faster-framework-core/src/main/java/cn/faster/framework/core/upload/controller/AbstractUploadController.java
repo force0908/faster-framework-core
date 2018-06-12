@@ -5,6 +5,7 @@ import cn.faster.framework.core.exception.model.ErrorResponseEntity;
 import cn.faster.framework.core.upload.model.UploadRequest;
 import cn.faster.framework.core.upload.service.IUploadService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +18,8 @@ import java.io.IOException;
 /**
  * @author zhangbowen 2018/6/12 10:18
  */
-@AllArgsConstructor
 public abstract class AbstractUploadController {
+    @Autowired
     private IUploadService uploadService;
 
 
