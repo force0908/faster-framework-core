@@ -18,7 +18,7 @@ import java.io.IOException;
  * @author zhangbowen 2018/6/12 10:18
  */
 @AllArgsConstructor
-public abstract class UploadController {
+public abstract class AbstractUploadController {
     private IUploadService uploadService;
 
 
