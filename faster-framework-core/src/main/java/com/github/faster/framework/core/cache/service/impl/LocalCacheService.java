@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 /**
- * @author zhangbowen 2018/6/6 14:37
+ * @author zhangbowen
  */
 public class LocalCacheService<V> implements ICacheService<V> {
     private Map<String, LocalCacheEntity<V>> softHashMap = new ConcurrentReferenceHashMap<>();

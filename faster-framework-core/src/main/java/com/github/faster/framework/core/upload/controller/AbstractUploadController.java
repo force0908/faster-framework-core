@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 /**
- * @author zhangbowen 2018/6/12 10:18
+ * @author zhangbowen
  */
 public abstract class AbstractUploadController {
     @Autowired
@@ -25,8 +25,8 @@ public abstract class AbstractUploadController {
 
     /**
      * 预上传，返回上传所需参数
-     *
-     * @return
+     * @param uploadRequest 上传请求
+     * @return httpResponse
      */
     @GetMapping("/upload/preload")
     public ResponseEntity preload(UploadRequest uploadRequest) {
@@ -36,8 +36,9 @@ public abstract class AbstractUploadController {
     /**
      * 上传文件
      *
-     * @param uploadFile
-     * @return
+     * @param uploadFile 文件
+     * @param uploadRequest 上传请求
+     * @return httpResponse
      */
     @PostMapping("/upload")
     public ResponseEntity upload(@RequestParam("file") MultipartFile uploadFile, UploadRequest uploadRequest) {

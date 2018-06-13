@@ -23,22 +23,27 @@ subprojects { ->
             include '**/*.xml'
         }
     }
+
+    task javadocJar(type: Jar) {
+        classifier = 'javadoc'
+        from javadoc
+    }
+
     task sourcesJar(type: Jar, dependsOn: classes) {
         classifier = 'sources'
         from sourceSets.main.allSource
     }
 
     artifacts {
+        archives jar
+        archives javadocJar
         archives sourcesJar
     }
-    uploadArchives {
-        repositories {
-            mavenDeployer {
-                repository(url: "file://c:/tmp/myRepo/")
-            }
-        }
-    }
+
     tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+    tasks.withType(Javadoc) {
         options.encoding = "UTF-8"
     }
 }

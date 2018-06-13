@@ -6,7 +6,7 @@ import tk.mybatis.mapper.mapperhelper.MapperTemplate;
 import tk.mybatis.mapper.mapperhelper.SqlHelper;
 
 /**
- * @author zhangbowen 2018/6/11 15:05
+ * @author zhangbowen
  */
 public class BaseProvider extends MapperTemplate {
 
@@ -17,8 +17,8 @@ public class BaseProvider extends MapperTemplate {
     /**
      * 查询分页
      *
-     * @param ms
-     * @return
+     * @param ms ms
+     * @return sql语句
      */
     public String selectPage(MappedStatement ms) {
         Class<?> entityClass = getEntityClass(ms);
@@ -35,8 +35,8 @@ public class BaseProvider extends MapperTemplate {
     /**
      * 根据Example查询
      *
-     * @param ms
-     * @return
+     * @param ms ms
+     * @return sql语句
      */
     public String selectPageByExample(MappedStatement ms) {
         Class<?> entityClass = getEntityClass(ms);

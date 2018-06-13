@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * @author zhangbowen 2018/5/30 15:49
+ * @author zhangbowen
  */
 public class LocalDateFormatter {
     public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

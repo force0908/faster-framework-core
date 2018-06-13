@@ -5,7 +5,7 @@ import com.github.faster.framework.core.exception.model.ErrorCode;
 import com.github.faster.framework.core.exception.model.ErrorCode;
 
 /**
- * @author zhangbowen 2018/5/29 12:08
+ * @author zhangbowen
  */
 public class TokenValidException extends RuntimeException {
     private ErrorCode errorCode;

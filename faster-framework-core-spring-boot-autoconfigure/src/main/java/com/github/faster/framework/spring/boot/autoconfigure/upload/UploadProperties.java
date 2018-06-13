@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 
 /**
- * @author zhangbowen 2018/6/12 14:24
+ * @author zhangbowen
  */
 @Data
 @ConfigurationProperties(prefix = "faster.upload")

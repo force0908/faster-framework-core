@@ -1,7 +1,7 @@
 package com.github.faster.framework.core.utils.sequence;
 
 /**
- * @author zhangbowen 2018/5/28 16:33
+ * @author zhangbowen
  */
 public class Sequence {
     private static final Sequence instance = new Sequence(0,0);
@@ -63,7 +63,7 @@ public class Sequence {
     /**
      * 获取ID
      *
-     * @return
+     * @return id
      */
     public synchronized Long nextId() {
         long timestamp = this.timeGen();
@@ -114,8 +114,8 @@ public class Sequence {
     /**
      * 保证返回的毫秒数在参数之后(阻塞到下一个毫秒，直到获得新的时间戳)
      *
-     * @param lastTimestamp
-     * @return
+     * @param lastTimestamp 时间戳
+     * @return 新的时间戳
      */
     private long tilNextMillis(long lastTimestamp) {
         long timestamp = this.timeGen();

@@ -12,7 +12,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
- * Created by zhangbowen on 2015/12/4.
+ * @author  zhangbowen
  */
 public class Utils {
     public static final int MINUTE = 60;
@@ -30,8 +30,8 @@ public class Utils {
     /**
      * 根据手机号生成用户名
      *
-     * @param phone
-     * @return
+     * @param phone 手机号
+     * @return 用户名
      */
     public static String generateNameByPhone(String phone) {
         return phone.substring(0, 3) + "****" + phone.substring(7);
@@ -40,7 +40,7 @@ public class Utils {
     /**
      * 生成短信验证码
      *
-     * @return
+     * @return 短信验证码
      */
     public static String generateSmsCode() {
         return String.valueOf((int) (Math.random() * 9000) + 1000);
@@ -67,7 +67,7 @@ public class Utils {
      * 生成md5
      *
      * @param str 要加密的内容
-     * @return
+     * @return 加密后内容
      */
     public static String md5(String str) {
         return DigestUtils.md5DigestAsHex(str.getBytes());
@@ -76,9 +76,9 @@ public class Utils {
     /**
      * bean转map
      *
-     * @param bean
-     * @param <T>
-     * @return
+     * @param bean 原始bean
+     * @param <T> 泛型
+     * @return map
      */
     public static <T> Map<String, Object> beanToMap(T bean) {
         Map<String, Object> map = new HashMap<>();
@@ -95,7 +95,9 @@ public class Utils {
      * 排序签名
      *
      * @param o      要签名的对象
+     * @param <T> 泛型
      * @param secret 秘钥
+     * @return 加密后字符串
      */
     public static <T> String signWithSort(T o, String secret) {
         Map<String, Object> map = beanToMap(o);

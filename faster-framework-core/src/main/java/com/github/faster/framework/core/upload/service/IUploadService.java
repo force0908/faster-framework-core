@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
 /**
- * @author zhangbowen 2018/6/12 10:07
+ * @author zhangbowen
  */
 public abstract class IUploadService {
     protected static final DateTimeFormatter FILE_NAME_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSS");
@@ -21,16 +21,19 @@ public abstract class IUploadService {
         this.mode = mode;
     }
     /**
-     * 获取上传签名
-     *
-     * @return
+     * 获取签名
+     * @param uploadRequest 上传请求实体
+     * @return 签名
      */
     protected abstract String sign(UploadRequest uploadRequest);
 
     /**
      * 上传文件
      *
-     * @return
+     * @param uploadFile 文件
+     * @param uploadRequest 请求实体
+     * @return 上传成功实体
+     * @throws IOException ioexception
      */
     public UploadSuccess upload(MultipartFile uploadFile, UploadRequest uploadRequest) throws IOException {
         return new UploadSuccess();
@@ -38,8 +41,8 @@ public abstract class IUploadService {
 
     /**
      * 预上传，获取上传所需参数
-     * @param uploadRequest
-     * @return
+     * @param uploadRequest 上传请求实体
+     * @return 返回携带签名的上传实体
      */
     public UploadRequest preload(UploadRequest uploadRequest) {
         UploadRequest resultRequest = new UploadRequest();

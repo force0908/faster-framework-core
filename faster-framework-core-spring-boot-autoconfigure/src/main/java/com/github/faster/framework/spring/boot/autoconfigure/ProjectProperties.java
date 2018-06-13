@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @author zhangbowen 2018/6/12 14:26
+ * @author zhangbowen
  */
 @ConfigurationProperties(prefix = "faster")
 @Data

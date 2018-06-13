@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.sql.SQLException;
 
 /**
- * @author Created by zhangbowen on 2017/6/6.
+ * @author zhangbowen
  */
 @ControllerAdvice
 @ResponseBody

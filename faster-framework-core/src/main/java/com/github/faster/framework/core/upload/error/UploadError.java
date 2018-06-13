@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * @author zhangbowen 2018/6/12 10:52
+ * @author zhangbowen
  */
 @Getter
 @AllArgsConstructor

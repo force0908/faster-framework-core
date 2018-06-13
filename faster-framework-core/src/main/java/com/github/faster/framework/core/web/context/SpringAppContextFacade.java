@@ -5,8 +5,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 /**
- * Created with IntelliJ IDEA.
- *
  * @author zhangbowen
  */
 public class SpringAppContextFacade implements ApplicationContextAware {

@@ -1,11 +1,7 @@
 package com.github.faster.framework.core.exception.model;
 
 /**
- * Created with IntelliJ IDEA.
- *
- * @Autor: zhangbowen
- * @Time: 11:55
- * @Description:
+ * @author zhangbowen
  */
 public enum BasisErrorCode implements ErrorCode {
     SERVER_ERROR(1000, "服务器正在维护"),

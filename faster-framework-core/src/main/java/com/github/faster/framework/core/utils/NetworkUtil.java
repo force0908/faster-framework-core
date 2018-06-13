@@ -4,16 +4,15 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
- * Created by zhangbowen on 2017/7/19.
+ * @author  zhangbowen
  */
 public class NetworkUtil {
 
     /**
      * 获取请求主机IP地址,如果通过代理进来，则透过防火墙获取真实IP地址;
      *
-     * @param request
-     * @return
-     * @throws IOException
+     * @param request 请求
+     * @return ip
      */
     public static String getIp(HttpServletRequest request) {
         // 获取请求主机IP地址,如果通过代理进来，则透过防火墙获取真实IP地址

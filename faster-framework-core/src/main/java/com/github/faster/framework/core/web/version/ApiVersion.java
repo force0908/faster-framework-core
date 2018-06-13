@@ -6,15 +6,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by zhangbowen on 2017/4/15.
+ * @author zhangbowen
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ApiVersion {
     /**
-     * 版本号
      *
-     * @return
+     * @return 版本号
      */
     int value() default 1;
 }

@@ -12,11 +12,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created with IntelliJ IDEA.
- *
- * @Autor: zhangbowen
- * @Time: 19:12
- * @Description:
+ * @author zhangbowen
  */
 public class RedisCacheService<V> implements ICacheService<V> {
     @Autowired

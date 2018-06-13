@@ -3,7 +3,7 @@ package com.github.faster.framework.core.cache.entity;
 import lombok.Data;
 
 /**
- * Created by zhangbowen on 2016/12/5.
+ * @author zhangbowen
  */
 @Data
 public class LocalCacheEntity<V> {

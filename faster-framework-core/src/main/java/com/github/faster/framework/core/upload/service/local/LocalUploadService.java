@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 /**
- * @author zhangbowen 2018/6/12 11:45
+ * @author zhangbowen
  */
 public class LocalUploadService extends IUploadService {
     private String fileDir;

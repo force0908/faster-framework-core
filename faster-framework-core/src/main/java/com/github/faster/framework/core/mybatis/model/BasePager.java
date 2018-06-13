@@ -6,7 +6,7 @@ import lombok.Data;
 import javax.persistence.Transient;
 
 /**
- * @author Created by zhangbowen on 2016/1/25.
+ * @author Created by
  */
 @Data
 public class BasePager {

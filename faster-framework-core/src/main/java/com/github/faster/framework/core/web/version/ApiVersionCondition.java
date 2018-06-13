@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by zhangbowen on 2017/4/15.
+ * @author zhangbowen
  */
 public class ApiVersionCondition implements RequestCondition<ApiVersionCondition> {
     private final static Pattern VERSION_PREFIX_PATTERN = Pattern.compile("/v(\\d+).*");

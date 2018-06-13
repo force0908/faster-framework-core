@@ -4,7 +4,7 @@ import com.github.faster.framework.core.web.context.WebContextFacade;
 import org.springframework.http.HttpStatus;
 
 /**
- * Created by zhangbowen on 2017/5/5.
+ * Created by zhangbowen
  */
 public class ResultError {
     private long timestamp;

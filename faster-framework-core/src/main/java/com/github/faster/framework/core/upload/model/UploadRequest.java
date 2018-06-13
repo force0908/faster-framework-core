@@ -3,7 +3,7 @@ package com.github.faster.framework.core.upload.model;
 import lombok.Data;
 
 /**
- * @author zhangbowen 2018/6/12 10:39
+ * @author zhangbowen
  */
 @Data
 public class UploadRequest {

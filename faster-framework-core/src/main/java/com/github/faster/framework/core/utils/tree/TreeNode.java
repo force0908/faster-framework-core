@@ -3,7 +3,7 @@ package com.github.faster.framework.core.utils.tree;
 import java.util.List;
 
 /**
- * @author zhangbowen 2018/5/30 14:38
+ * @author zhangbowen
  */
 public interface TreeNode {
     Long getId();

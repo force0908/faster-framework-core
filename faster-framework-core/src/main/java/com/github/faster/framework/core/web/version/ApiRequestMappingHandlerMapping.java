@@ -7,7 +7,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import java.lang.reflect.Method;
 
 /**
- * Created by zhangbowen on 2017/7/8.
+ * @author zhangbowen
  */
 public class ApiRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
     private static final String VERSION_FLAG = "{version}";

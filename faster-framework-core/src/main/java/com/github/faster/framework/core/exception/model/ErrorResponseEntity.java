@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 /**
- * Created by zhangbowen on 16-6-29.
+ * Created by zhangbowen
  */
 @SuppressWarnings("unchecked")
 public class ErrorResponseEntity extends ResponseEntity {

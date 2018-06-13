@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Created by zhangbowen on 2017/5/5.
+ * @author  zhangbowen
  */
 @Configuration
 @ConditionalOnProperty(prefix = "faster.cache", name = "enabled", havingValue = "true", matchIfMissing = true)

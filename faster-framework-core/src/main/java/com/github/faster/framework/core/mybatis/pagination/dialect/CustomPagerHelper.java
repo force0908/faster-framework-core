@@ -144,8 +144,8 @@ public class CustomPagerHelper implements Dialect {
     /**
      * 生成获得总数的语句
      *
-     * @param sql
-     * @return
+     * @param sql sql语句
+     * @return 转换为count语句的bean
      */
     private ConvertCountSqlBean generateCountSql(String sql) {
         //去除order by

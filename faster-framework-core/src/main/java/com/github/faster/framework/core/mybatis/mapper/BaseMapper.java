@@ -13,7 +13,7 @@ import tk.mybatis.mapper.common.IdsMapper;
 import tk.mybatis.mapper.common.Marker;
 
 /**
- * @author zhangbowen 2018/5/29 9:00
+ * @author zhangbowen
  */
 @RegisterMapper
 public interface BaseMapper<T>
@@ -24,19 +24,19 @@ public interface BaseMapper<T>
         IdsMapper<T>,
         Marker {
     /**
-     * 根据实体中的属性值进行分页查询，查询条件使用等号
-     *
-     * @param record
-     * @return
+     *  分页查询
+     * @param pager 分页请求
+     * @param record 实体
+     * @return 分页结果
      */
     @SelectProvider(type = BaseProvider.class, method = "dynamicSQL")
     Page<T> selectPage(RowBounds pager, T record);
 
     /**
      * 根据Example条件进行分页查询
-     *
-     * @param example
-     * @return
+     * @param pager 分页请求
+     * @param example 条件
+     * @return 分页实体
      */
     @SelectProvider(type = BaseProvider.class, method = "dynamicSQL")
     Page<T> selectPageByExample(RowBounds pager, Object example);

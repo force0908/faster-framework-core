@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
- * @author zhangbowen 2018/6/11 11:37
+ * @author zhangbowen
  */
 @Data
 public class ListWrapper<T> {

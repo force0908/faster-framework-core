@@ -1,11 +1,7 @@
 package com.github.faster.framework.core.exception.model;
 
 /**
- * Created with IntelliJ IDEA.
- *
- * @Autor: zhangbowen
- * @Time: 11:51
- * @Description:
+ * @author zhangbowen
  */
 public interface ErrorCode {
     int getValue();
