@@ -1,27 +1,33 @@
-# faster-framework-core
-## Getting Start
+# 快速开发框架
 
-- 发布仓库到本地
+## 介绍
 
-```
-gradle install
-```
+基于SpringBoot基础框架封装的快速开发脚手架，引入依赖后可直接使用。
 
-- gradle配置
+已集成缓存、权限、数据库分页插件、文件上传等组件。
 
-```
-processResources {
-    from('src/main/java') {
-       include '**/*.xml'
-    }
-}
-repositories {
-      mavenLocal()
-}
-```
+默认为前端接口项目，后台管理请移步
 
-- 引入
+https://github.com/faster-framework/faster-framework-admin
+
+## 使用
+
+- Gradle
 
 ```
-compile 'com.github.faster.framework:faster-framework-core-spring-boot-starter:1.0-SNAPSHOT'
+compile 'com.github.faster.framework:faster-framework-core-spring-boot-starter:最新版本'
 ```
+
+- Maven
+
+```
+<dependency>
+    <groupId>com.github.faster.framework</groupId>
+    <artifactId>faster-framework-core-spring-boot-starter</artifactId>
+    <version>最新版本</version>
+</dependency>
+```
+
+## 文档
+
+waiting...
