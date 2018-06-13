@@ -6,9 +6,10 @@
 
 已集成缓存、权限、数据库分页插件、文件上传等组件。
 
-默认为前端接口项目，后台管理请移步
+默认为前端接口项目，后台管理请移步项目
 
-https://github.com/faster-framework/faster-framework-admin
+[faster-framework-admin](https://github.com/faster-framework/faster-framework-admin)
+
 
 ## 使用
 
