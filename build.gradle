@@ -59,10 +59,24 @@ subprojects { ->
                 }
 
                 pom.project {
+                    name project.name
                     packaging 'jar'
                     description 'faster framework by Spring Boot'
                     url 'https://github.com/faster-framework/'
 
+                    scm {
+                        url 'https://github.com/faster-framework/'
+                        connection 'https://github.com/faster-framework/'
+                        developerConnection 'https://github.com/faster-framework/'
+                    }
+
+                    licenses {
+                        license {
+                            name 'The Apache Software License, Version 2.0'
+                            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                            distribution 'repo'
+                        }
+                    }
                     developers {
                         developer {
                             id "zhangbowen";
