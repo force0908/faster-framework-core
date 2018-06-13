@@ -11,6 +11,7 @@ subprojects { ->
     group 'com.github.faster-framework'
     sourceCompatibility = 1.8
     repositories {
+        mavenLocal()
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
     }
     dependencyManagement {
@@ -46,42 +47,44 @@ subprojects { ->
     tasks.withType(Javadoc) {
         options.encoding = "UTF-8"
     }
-    signing {
-        sign configurations.archives
-    }
-    uploadArchives {
-        repositories {
-            mavenDeployer {
-                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+    if (version =~ 'RELEASE$') {
+        signing {
+            sign configurations.archives
+        }
+        uploadArchives {
+            repositories {
+                mavenDeployer {
+                    beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                    authentication(userName: sonatypeUsername, password: sonatypePassword)
-                }
+                    repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                        authentication(userName: sonatypeUsername, password: sonatypePassword)
+                    }
 
-                pom.project {
-                    name project.name
-                    packaging 'jar'
-                    description 'faster framework by Spring Boot'
-                    url 'https://github.com/faster-framework/'
-
-                    scm {
+                    pom.project {
+                        name project.name
+                        packaging 'jar'
+                        description 'faster framework by Spring Boot'
                         url 'https://github.com/faster-framework/'
-                        connection 'https://github.com/faster-framework/'
-                        developerConnection 'https://github.com/faster-framework/'
-                    }
 
-                    licenses {
-                        license {
-                            name 'The Apache Software License, Version 2.0'
-                            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                            distribution 'repo'
+                        scm {
+                            url 'https://github.com/faster-framework/'
+                            connection 'https://github.com/faster-framework/'
+                            developerConnection 'https://github.com/faster-framework/'
                         }
-                    }
-                    developers {
-                        developer {
-                            id "zhangbowen";
-                            name "Zhang Bowen";
-                            email "515445681@qq.com";
+
+                        licenses {
+                            license {
+                                name 'The Apache Software License, Version 2.0'
+                                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                                distribution 'repo'
+                            }
+                        }
+                        developers {
+                            developer {
+                                id "zhangbowen";
+                                name "Zhang Bowen";
+                                email "515445681@qq.com";
+                            }
                         }
                     }
                 }
