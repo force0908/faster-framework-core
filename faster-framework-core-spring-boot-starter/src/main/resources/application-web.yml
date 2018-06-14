@@ -10,8 +10,6 @@ spring:
       WRITE_NUMBERS_AS_STRINGS: true
   mvc:
     date-format: yyyy-MM-dd HH:mm:ss
-  aop:
-    proxy-target-class: true
 
 ---
 spring:
