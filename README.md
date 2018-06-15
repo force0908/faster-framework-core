@@ -31,4 +31,4 @@ compile 'com.github.faster.framework:faster-framework-core-spring-boot-starter:�
 
 ## 文档
 
-waiting...
+[用户指南](https://faster-framework.github.io/faster-framework-guide/)
