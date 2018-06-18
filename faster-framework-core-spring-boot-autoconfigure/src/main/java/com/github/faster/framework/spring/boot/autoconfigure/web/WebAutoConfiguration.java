@@ -1,7 +1,7 @@
 package com.github.faster.framework.spring.boot.autoconfigure.web;
 
-import com.github.faster.framework.spring.boot.autoconfigure.auth.AuthAutoConfiguration;
 import com.github.faster.framework.core.web.config.WebConfiguration;
+import com.github.faster.framework.spring.boot.autoconfigure.auth.AuthAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 

@@ -1,5 +1,8 @@
 package com.github.faster.framework.core.utils.tree;
 
+
+import com.github.faster.framework.core.entity.TreeNode;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

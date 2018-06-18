@@ -1,4 +1,4 @@
-package com.github.faster.framework.core.utils.tree;
+package com.github.faster.framework.core.entity;
 
 import java.util.List;
 

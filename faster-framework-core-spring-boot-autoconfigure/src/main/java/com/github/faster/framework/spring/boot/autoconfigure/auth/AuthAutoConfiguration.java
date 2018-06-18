@@ -17,7 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 @ConditionalOnProperty(prefix = "faster.auth", name = "enabled", havingValue = "true", matchIfMissing = true)
-@EnableConfigurationProperties({AuthProperties.class,ProjectProperties.class})
+@EnableConfigurationProperties({AuthProperties.class, ProjectProperties.class})
 public class AuthAutoConfiguration {
     @Autowired
     private AuthProperties authProperties;
