@@ -20,7 +20,7 @@ public class UploadAutoConfiguration {
     @Configuration
     @ConditionalOnProperty(prefix = "faster.upload", name = "mode", havingValue = "local", matchIfMissing = true)
     @EnableConfigurationProperties({ProjectProperties.class, LocalUploadProperties.class, UploadProperties.class})
-    public static class AppAuthConfiguration {
+    public static class LocalUploadConfiguration {
         @Autowired
         private ProjectProperties projectProperties;
         @Autowired
