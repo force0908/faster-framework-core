@@ -11,7 +11,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum UploadError implements ErrorCode {
-    SIGN_ERROR(0, "签名错误"),
+    SIGN_ERROR(1010, "签名错误"),
+    SIGN_TIME_OUT(1011,"签名超时")
     ;
     private int value;
     private String description;

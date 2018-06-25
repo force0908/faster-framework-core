@@ -4,15 +4,15 @@ import com.github.faster.framework.core.exception.model.BasisErrorCode;
 import com.github.faster.framework.core.exception.model.ErrorResponseEntity;
 import com.github.faster.framework.core.upload.model.UploadRequest;
 import com.github.faster.framework.core.upload.service.IUploadService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -25,6 +25,7 @@ public abstract class AbstractUploadController {
 
     /**
      * 预上传，返回上传所需参数
+     *
      * @param uploadRequest 上传请求
      * @return httpResponse
      */
@@ -36,16 +37,30 @@ public abstract class AbstractUploadController {
     /**
      * 上传文件
      *
-     * @param uploadFile 文件
+     * @param uploadFile    文件
      * @param uploadRequest 上传请求
+     * @param token         签名字符串
      * @return httpResponse
      */
     @PostMapping("/upload")
-    public ResponseEntity upload(@RequestParam("file") MultipartFile uploadFile, UploadRequest uploadRequest) {
+    public ResponseEntity upload(@RequestParam("file") MultipartFile uploadFile, UploadRequest uploadRequest, String token) {
         try {
-            return ResponseEntity.ok(uploadService.upload(uploadFile, uploadRequest));
+            return ResponseEntity.ok(uploadService.upload(uploadFile, uploadRequest, token));
         } catch (IOException e) {
             return ErrorResponseEntity.error(BasisErrorCode.SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    /**
+     * 预览、下载上传的文件
+     *
+     * @param fileName 文件名称
+     * @return 文件流
+     */
+    @GetMapping("/files/{fileName}")
+    public ResponseEntity preview(@PathVariable String fileName) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        return new ResponseEntity<>(uploadService.files(fileName), headers, HttpStatus.OK);
     }
 }

@@ -2,9 +2,7 @@ package com.github.faster.framework.core.upload.service;
 
 import com.github.faster.framework.core.upload.model.UploadRequest;
 import com.github.faster.framework.core.upload.model.UploadSuccess;
-import com.github.faster.framework.core.upload.model.UploadRequest;
-import com.github.faster.framework.core.upload.model.UploadSuccess;
-import org.springframework.beans.BeanUtils;
+import com.github.faster.framework.core.upload.model.UploadToken;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -15,40 +13,35 @@ import java.time.format.DateTimeFormatter;
  */
 public abstract class IUploadService {
     protected static final DateTimeFormatter FILE_NAME_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSS");
-    private String mode;
 
-    protected IUploadService(String mode){
-        this.mode = mode;
+    protected IUploadService() {
     }
+
     /**
-     * 获取签名
+     * 预上传，获取token
+     *
      * @param uploadRequest 上传请求实体
      * @return 签名
      */
-    protected abstract String sign(UploadRequest uploadRequest);
+    public abstract UploadToken preload(UploadRequest uploadRequest);
 
     /**
      * 上传文件
      *
-     * @param uploadFile 文件
+     * @param uploadFile    文件
      * @param uploadRequest 请求实体
      * @return 上传成功实体
+     * @param token 签名字符串
      * @throws IOException ioexception
      */
-    public UploadSuccess upload(MultipartFile uploadFile, UploadRequest uploadRequest) throws IOException {
+    public UploadSuccess upload(MultipartFile uploadFile, UploadRequest uploadRequest, String token) throws IOException {
         return new UploadSuccess();
     }
 
     /**
-     * 预上传，获取上传所需参数
-     * @param uploadRequest 上传请求实体
-     * @return 返回携带签名的上传实体
+     * 预览、下载上传文件
+     * @param fileName 文件名称
+     * @return 字节流
      */
-    public UploadRequest preload(UploadRequest uploadRequest) {
-        UploadRequest resultRequest = new UploadRequest();
-        BeanUtils.copyProperties(uploadRequest, resultRequest);
-        resultRequest.setMode(this.mode);
-        resultRequest.setToken(sign(uploadRequest));
-        return resultRequest;
-    }
+    public byte[] files(String fileName){return new byte[]{};}
 }

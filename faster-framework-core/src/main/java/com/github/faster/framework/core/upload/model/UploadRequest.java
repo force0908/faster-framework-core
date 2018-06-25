@@ -18,14 +18,8 @@ public class UploadRequest {
     private String fileName;
 
     /**
-     * 上传token
+     * 时间戳
      */
-    private String token;
-
-    /**
-     * 模式
-     */
-    private String mode;
-
+    private long timestamp;
 
 }

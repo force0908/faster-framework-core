@@ -30,7 +30,7 @@ public class UploadAutoConfiguration {
 
         @Bean
         public IUploadService localUpload() {
-            return new LocalUploadService(uploadProperties.getMode(), localUploadProperties.getFileDir(), localUploadProperties.getUrlPrefix(), projectProperties.getBase64Secret());
+            return new LocalUploadService(localUploadProperties.getFileDir(), localUploadProperties.getUrlPrefix(), projectProperties.getBase64Secret());
         }
     }
 }
