@@ -2,7 +2,6 @@ package com.github.faster.framework.core.exception;
 
 
 import com.github.faster.framework.core.exception.model.ErrorCode;
-import com.github.faster.framework.core.exception.model.ErrorCode;
 
 /**
  * @author zhangbowen

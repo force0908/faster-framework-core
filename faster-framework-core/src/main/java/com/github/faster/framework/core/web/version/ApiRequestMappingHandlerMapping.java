@@ -12,16 +12,6 @@ import java.lang.reflect.Method;
 public class ApiRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
     private static final String VERSION_FLAG = "{version}";
 
-    @Override
-    protected RequestCondition<?> getCustomMethodCondition(Method method) {
-        return createCondition(method.getClass());
-    }
-
-    @Override
-    protected RequestCondition<?> getCustomTypeCondition(Class<?> handlerType) {
-        return createCondition(handlerType);
-    }
-
     private static RequestCondition<ApiVersionCondition> createCondition(Class<?> clazz) {
         RequestMapping classRequestMapping = clazz.getAnnotation(RequestMapping.class);
         if (classRequestMapping == null) {
@@ -37,5 +27,15 @@ public class ApiRequestMappingHandlerMapping extends RequestMappingHandlerMappin
         }
         ApiVersion apiVersion = clazz.getAnnotation(ApiVersion.class);
         return apiVersion == null ? new ApiVersionCondition(1) : new ApiVersionCondition(apiVersion.value());
+    }
+
+    @Override
+    protected RequestCondition<?> getCustomMethodCondition(Method method) {
+        return createCondition(method.getClass());
+    }
+
+    @Override
+    protected RequestCondition<?> getCustomTypeCondition(Class<?> handlerType) {
+        return createCondition(handlerType);
     }
 }

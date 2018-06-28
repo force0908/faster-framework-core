@@ -3,14 +3,13 @@ package com.github.faster.framework.core.web.inteceptor;
 import com.github.faster.framework.core.utils.NetworkUtil;
 import com.github.faster.framework.core.web.context.RequestContext;
 import com.github.faster.framework.core.web.context.WebContextFacade;
-import com.github.faster.framework.core.utils.NetworkUtil;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author  zhangbowen
+ * @author zhangbowen
  */
 public class ContextInterceptor implements HandlerInterceptor {
 

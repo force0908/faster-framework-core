@@ -1,7 +1,6 @@
 package com.github.faster.framework.core.mybatis.mapper;
 
 import com.github.faster.framework.core.mybatis.provider.BaseProvider;
-import com.github.faster.framework.core.mybatis.provider.BaseProvider;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.session.RowBounds;
@@ -24,8 +23,9 @@ public interface BaseMapper<T>
         IdsMapper<T>,
         Marker {
     /**
-     *  分页查询
-     * @param pager 分页请求
+     * 分页查询
+     *
+     * @param pager  分页请求
      * @param record 实体
      * @return 分页结果
      */
@@ -34,7 +34,8 @@ public interface BaseMapper<T>
 
     /**
      * 根据Example条件进行分页查询
-     * @param pager 分页请求
+     *
+     * @param pager   分页请求
      * @param example 条件
      * @return 分页实体
      */

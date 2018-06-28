@@ -4,14 +4,13 @@ import java.util.Collection;
 import java.util.Set;
 
 /**
- *
  * @author zhangbowen
  */
 public interface ICacheService<V> {
     /**
      * 设置缓存
      *
-     * @param key 缓存键
+     * @param key   缓存键
      * @param value 缓存值
      * @param exp   失效时间(秒)
      */
@@ -35,12 +34,14 @@ public interface ICacheService<V> {
 
     /**
      * 清空以cacheService开头的缓存
+     *
      * @param cachePrefix 缓存前缀
      */
     void clear(String cachePrefix);
 
     /**
      * 查询以cachePrefix开头的cache数量
+     *
      * @param cachePrefix 缓存前缀
      * @return 数量
      */
@@ -48,6 +49,7 @@ public interface ICacheService<V> {
 
     /**
      * 查询以cachePrefix开头的keys
+     *
      * @param cachePrefix 缓存前缀
      * @return 缓存列表
      */
@@ -55,6 +57,7 @@ public interface ICacheService<V> {
 
     /**
      * 查询以cachePrefix开头的值列表
+     *
      * @param cachePrefix 缓存前缀
      * @return 缓存列表
      */

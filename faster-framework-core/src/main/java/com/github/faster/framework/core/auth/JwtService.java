@@ -17,9 +17,9 @@ import java.util.Date;
  */
 @Data
 public class JwtService {
+    public static final String JWT_TOKEN_PREFIX = "jwt-token:";
     private String base64Security;
     private boolean multipartTerminal;
-    public static final String JWT_TOKEN_PREFIX = "jwt-token:";
 
     /**
      * 解密，使用项目配置秘钥

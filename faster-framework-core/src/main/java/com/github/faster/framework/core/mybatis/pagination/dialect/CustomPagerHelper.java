@@ -24,12 +24,12 @@ import java.util.regex.Pattern;
 import static com.github.pagehelper.page.PageMethod.clearPage;
 
 public class CustomPagerHelper implements Dialect {
-    private PageParams pageParams;
-    private PageAutoDialect autoDialect;
     private static final Pattern SUB_QUERY_PATTERN = Pattern.compile("[(]+[^,]*");
     private static final Pattern FROM_PATTERN = Pattern.compile("\\sfrom\\s");
     //处理SQL
     protected CountSqlParser countSqlParser = new CountSqlParser();
+    private PageParams pageParams;
+    private PageAutoDialect autoDialect;
 
     @Override
     public boolean skip(MappedStatement ms, Object parameterObject, RowBounds rowBounds) {

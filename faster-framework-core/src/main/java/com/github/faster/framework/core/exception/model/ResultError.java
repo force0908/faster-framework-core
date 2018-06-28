@@ -13,6 +13,30 @@ public class ResultError {
     private int code;
     private String message;
 
+    private ResultError() {
+        this.timestamp = System.currentTimeMillis();
+        this.path = WebContextFacade.getRequestContext().getUri();
+    }
+
+    public ResultError(int code, String message) {
+        this();
+        this.code = code;
+        this.message = message;
+    }
+
+    public ResultError(ErrorCode errorCode) {
+        this();
+        this.code = errorCode.getValue();
+        this.message = errorCode.getDescription();
+    }
+
+    public ResultError(ErrorCode errorCode, HttpStatus httpStatus) {
+        this();
+        this.code = errorCode.getValue();
+        this.message = errorCode.getDescription();
+        this.status = httpStatus.value();
+    }
+
     public long getTimestamp() {
         return timestamp;
     }
@@ -51,30 +75,6 @@ public class ResultError {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    private ResultError() {
-        this.timestamp = System.currentTimeMillis();
-        this.path = WebContextFacade.getRequestContext().getUri();
-    }
-
-    public ResultError(int code, String message) {
-        this();
-        this.code = code;
-        this.message = message;
-    }
-
-    public ResultError(ErrorCode errorCode) {
-        this();
-        this.code = errorCode.getValue();
-        this.message = errorCode.getDescription();
-    }
-
-    public ResultError(ErrorCode errorCode, HttpStatus httpStatus) {
-        this();
-        this.code = errorCode.getValue();
-        this.message = errorCode.getDescription();
-        this.status = httpStatus.value();
     }
 
 

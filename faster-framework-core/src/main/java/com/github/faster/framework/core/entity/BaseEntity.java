@@ -3,7 +3,6 @@ package com.github.faster.framework.core.entity;
 import com.github.faster.framework.core.mybatis.model.BasePager;
 import com.github.faster.framework.core.utils.sequence.Sequence;
 import com.github.faster.framework.core.web.context.WebContextFacade;
-import com.github.faster.framework.core.mybatis.model.BasePager;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

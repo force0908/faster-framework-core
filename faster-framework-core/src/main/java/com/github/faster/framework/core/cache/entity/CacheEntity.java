@@ -1,8 +1,8 @@
 package com.github.faster.framework.core.cache.entity;
 
 /**
- * @author  zhangbowen
- *  存储缓存中的实体
+ * @author zhangbowen
+ * 存储缓存中的实体
  */
 public class CacheEntity {
     private String jsonValue;

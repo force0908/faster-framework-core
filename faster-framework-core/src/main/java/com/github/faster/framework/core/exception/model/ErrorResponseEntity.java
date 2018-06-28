@@ -23,6 +23,7 @@ public class ErrorResponseEntity extends ResponseEntity {
     public static ErrorResponseEntity error(ErrorCode body, HttpStatus status) {
         return new ErrorResponseEntity(body, status);
     }
+
     public static ErrorResponseEntity error(ResultError resultError, HttpStatus status) {
         return new ErrorResponseEntity(resultError, status);
     }

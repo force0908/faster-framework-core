@@ -1,10 +1,9 @@
 package com.github.faster.framework.core.utils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 
 /**
- * @author  zhangbowen
+ * @author zhangbowen
  */
 public class NetworkUtil {
 

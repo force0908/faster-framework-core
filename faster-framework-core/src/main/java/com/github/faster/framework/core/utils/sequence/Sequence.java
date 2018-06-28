@@ -4,27 +4,41 @@ package com.github.faster.framework.core.utils.sequence;
  * @author zhangbowen
  */
 public class Sequence {
-    private static final Sequence instance = new Sequence(0,0);
-    /** 起始时间戳，用于用当前时间戳减去这个时间戳，算出偏移量 **/
+    private static final Sequence instance = new Sequence(0, 0);
+    /**
+     * 起始时间戳，用于用当前时间戳减去这个时间戳，算出偏移量
+     **/
     private final long startTime = 1519740777809L;
 
-    /** workerId占用的位数5（表示只允许workId的范围为：0-1023）**/
+    /**
+     * workerId占用的位数5（表示只允许workId的范围为：0-1023）
+     **/
     private final long workerIdBits = 5L;
-    /** dataCenterId占用的位数：5 **/
+    /**
+     * dataCenterId占用的位数：5
+     **/
     private final long dataCenterIdBits = 5L;
-    /** 序列号占用的位数：12（表示只允许workId的范围为：0-4095）**/
+    /**
+     * 序列号占用的位数：12（表示只允许workId的范围为：0-4095）
+     **/
     private final long sequenceBits = 12L;
 
-    /** workerId可以使用的最大数值：31 **/
+    /**
+     * workerId可以使用的最大数值：31
+     **/
     private final long maxWorkerId = -1L ^ (-1L << workerIdBits);
-    /** dataCenterId可以使用的最大数值：31 **/
+    /**
+     * dataCenterId可以使用的最大数值：31
+     **/
     private final long maxDataCenterId = -1L ^ (-1L << dataCenterIdBits);
 
     private final long workerIdShift = sequenceBits;
     private final long dataCenterIdShift = sequenceBits + workerIdBits;
     private final long timestampLeftShift = sequenceBits + workerIdBits + dataCenterIdBits;
 
-    /** 用mask防止溢出:位与运算保证计算的结果范围始终是 0-4095 **/
+    /**
+     * 用mask防止溢出:位与运算保证计算的结果范围始终是 0-4095
+     **/
     private final long sequenceMask = -1L ^ (-1L << sequenceBits);
 
     private long workerId;
@@ -33,9 +47,6 @@ public class Sequence {
     private long lastTimestamp = -1L;
     private boolean isClock = false;
 
-    public synchronized static Long next(){
-        return instance.nextId();
-    }
     /**
      * 基于Snowflake创建分布式ID生成器
      * <p>
@@ -54,6 +65,10 @@ public class Sequence {
 
         this.workerId = workerId;
         this.dataCenterId = dataCenterId;
+    }
+
+    public synchronized static Long next() {
+        return instance.nextId();
     }
 
     public void setClock(boolean clock) {

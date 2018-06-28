@@ -12,7 +12,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ApiVersion {
     /**
-     *
      * @return 版本号
      */
     int value() default 1;

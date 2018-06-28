@@ -1,14 +1,13 @@
 package com.github.faster.framework.core.auth.app.interceptor;
 
 import com.github.faster.framework.core.auth.JwtService;
-import com.github.faster.framework.core.auth.app.AppAuthContext;
-import com.github.faster.framework.core.auth.app.AppAuthContextFacade;
 import com.github.faster.framework.core.auth.app.anno.Login;
 import com.github.faster.framework.core.cache.context.CacheFacade;
 import com.github.faster.framework.core.exception.TokenValidException;
 import com.github.faster.framework.core.exception.model.BasisErrorCode;
+import com.github.faster.framework.core.web.context.RequestContext;
 import com.github.faster.framework.core.web.context.SpringAppContextFacade;
-import com.github.faster.framework.core.auth.app.anno.Login;
+import com.github.faster.framework.core.web.context.WebContextFacade;
 import io.jsonwebtoken.Claims;
 import org.springframework.http.HttpHeaders;
 import org.springframework.util.StringUtils;
@@ -31,7 +30,7 @@ public class AppAuthInterceptor implements HandlerInterceptor {
             boolean hasMethodLogin = handlerMethod.hasMethodAnnotation(Login.class);
             Login loginClass = handlerMethod.getBeanType().getAnnotation(Login.class);
             String jwtToken = request.getHeader(HttpHeaders.AUTHORIZATION);
-            AppAuthContext appAuthContext = null;
+            RequestContext requestContext = WebContextFacade.getRequestContext();
             //解码,设置appAuthContext
             if (!StringUtils.isEmpty(jwtToken) && jwtToken.length() > 7) {
                 JwtService jwtService = SpringAppContextFacade.applicationContext.getBean(JwtService.class);
@@ -43,26 +42,22 @@ public class AppAuthInterceptor implements HandlerInterceptor {
                     if (!jwtService.isMultipartTerminal()) {
                         String cacheToken = CacheFacade.get(JwtService.JWT_TOKEN_PREFIX + userId);
                         if (!StringUtils.isEmpty(cacheToken) && jwtToken.equals(cacheToken)) {
-                            appAuthContext = new AppAuthContext(userId);
+                            requestContext.setUserId(Long.parseLong(userId));
                         }
                     } else {
-                        appAuthContext = new AppAuthContext(userId);
+                        requestContext.setUserId(Long.parseLong(userId));
                     }
                 }
+
             }
             //如果需要验证，验证appAuth是否为null
-            if ((hasMethodLogin || loginClass != null) && appAuthContext == null) {
+            if ((hasMethodLogin || loginClass != null) && requestContext.getUserId() == null) {
                 throw new TokenValidException(BasisErrorCode.TOKEN_INVALID);
             } else {
                 //放入ThreadLocal中
-                AppAuthContextFacade.setAppAuthContext(appAuthContext);
+                WebContextFacade.setRequestContext(requestContext);
             }
         }
         return true;
-    }
-
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-        AppAuthContextFacade.removeAppAuthContext();
     }
 }

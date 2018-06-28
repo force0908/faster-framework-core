@@ -1,7 +1,6 @@
 package com.github.faster.framework.core.cache.service.impl;
 
 import com.github.faster.framework.core.cache.service.ICacheService;
-import com.github.faster.framework.core.cache.service.ICacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 

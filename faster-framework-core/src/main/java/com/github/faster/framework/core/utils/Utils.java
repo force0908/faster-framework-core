@@ -12,7 +12,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
- * @author  zhangbowen
+ * @author zhangbowen
  */
 public class Utils {
     public static final int MINUTE = 60;
@@ -77,7 +77,7 @@ public class Utils {
      * bean转map
      *
      * @param bean 原始bean
-     * @param <T> 泛型
+     * @param <T>  泛型
      * @return map
      */
     public static <T> Map<String, Object> beanToMap(T bean) {
@@ -95,7 +95,7 @@ public class Utils {
      * 排序签名
      *
      * @param o      要签名的对象
-     * @param <T> 泛型
+     * @param <T>    泛型
      * @param secret 秘钥
      * @return 加密后字符串
      */

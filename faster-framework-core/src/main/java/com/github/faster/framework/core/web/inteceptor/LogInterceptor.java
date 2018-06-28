@@ -1,7 +1,6 @@
 package com.github.faster.framework.core.web.inteceptor;
 
 import com.github.faster.framework.core.utils.NetworkUtil;
-import com.github.faster.framework.core.utils.NetworkUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;

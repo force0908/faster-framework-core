@@ -32,9 +32,9 @@ import java.util.Properties;
         }
 )
 public class PageInterceptor implements Interceptor {
+    private static final String DEFAULT_DIALECT_CLASS = "com.github.faster.framework.core.mybatis.pagination.dialect.CustomPagerHelper";
     private Cache<CacheKey, MappedStatement> msCountMap = null;
     private Dialect dialect;
-    private static final String DEFAULT_DIALECT_CLASS = "com.github.faster.framework.core.mybatis.pagination.dialect.CustomPagerHelper";
     private Field additionalParametersField;
 
     @Override
