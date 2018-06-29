@@ -19,11 +19,7 @@ subprojects { ->
             mavenBom 'org.springframework.boot:spring-boot-starter-parent:2.0.2.RELEASE'
         }
     }
-    processResources {
-        from('src/main/java') {
-            include '**/*.xml'
-        }
-    }
+    sourceSets.main.resources.srcDirs = ["src/main/java", "src/main/resources"]
 
     task javadocJar(type: Jar) {
         classifier = 'javadoc'
