@@ -15,4 +15,5 @@ dependencies {
     compile 'tk.mybatis:mapper-spring-boot-starter:2.0.2'
     compile 'com.github.pagehelper:pagehelper-spring-boot-starter:1.2.3'
     compile 'org.mybatis:mybatis-typehandlers-jsr310:1.0.2'
+    compile 'com.github.bingoohuang:patchca:0.0.1'
 }

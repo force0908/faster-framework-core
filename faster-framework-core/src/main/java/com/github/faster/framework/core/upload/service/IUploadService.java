@@ -3,9 +3,12 @@ package com.github.faster.framework.core.upload.service;
 import com.github.faster.framework.core.upload.model.UploadRequest;
 import com.github.faster.framework.core.upload.model.UploadSuccess;
 import com.github.faster.framework.core.upload.model.UploadToken;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -34,8 +37,43 @@ public abstract class IUploadService {
      * @return 上传成功实体
      * @throws IOException ioexception
      */
-    public UploadSuccess upload(MultipartFile uploadFile, UploadRequest uploadRequest, String token) throws IOException {
-        return new UploadSuccess();
+    public abstract UploadSuccess upload(MultipartFile uploadFile, UploadRequest uploadRequest, String token) throws IOException;
+
+    /**
+     * 上传文件
+     *
+     * @param uploadStream  上传的stream流
+     * @param uploadRequest 请求实体
+     * @return 上传成功实体
+     * @param token         签名字符串
+     * @throws IOException ioexception
+     */
+    public abstract UploadSuccess upload(InputStream uploadStream, UploadRequest uploadRequest, String token) throws IOException;
+
+    /**
+     * 上传文件
+     *
+     * @param uploadByte    上传的字节数组
+     * @param uploadRequest 请求实体
+     * @return 上传成功实体
+     * @param token         签名字符串
+     * @throws IOException ioexception
+     */
+    public abstract UploadSuccess upload(byte[] uploadByte, UploadRequest uploadRequest, String token) throws IOException;
+
+    /**
+     * 根据上传参数获取文件名称
+     *
+     * @param uploadRequest 上传参数
+     * @return 文件名
+     */
+    protected String getFileName(UploadRequest uploadRequest) {
+        String fileName = StringUtils.isEmpty(uploadRequest.getFileName()) ? LocalDateTime.now().format(FILE_NAME_FORMATTER) : uploadRequest.getFileName();
+        //如果不覆盖,在文件后增加时间后缀
+        if (uploadRequest.getIsCover() == 0) {
+            fileName = fileName.concat(LocalDateTime.now().format(FILE_NAME_FORMATTER));
+        }
+        return fileName;
     }
 
     /**

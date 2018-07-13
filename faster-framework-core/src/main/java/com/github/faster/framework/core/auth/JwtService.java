@@ -1,10 +1,7 @@
 package com.github.faster.framework.core.auth;
 
 import com.github.faster.framework.core.cache.context.CacheFacade;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import lombok.Data;
 
 import javax.crypto.spec.SecretKeySpec;
@@ -39,9 +36,13 @@ public class JwtService {
      * @return Claims
      */
     private Claims parseToken(String token, String base64Security) {
-        return Jwts.parser()
-                .setSigningKey(DatatypeConverter.parseBase64Binary(base64Security))
-                .parseClaimsJws(token).getBody();
+        try {
+            return Jwts.parser()
+                    .setSigningKey(DatatypeConverter.parseBase64Binary(base64Security))
+                    .parseClaimsJws(token).getBody();
+        } catch (ExpiredJwtException ex) {
+            return null;
+        }
     }
 
     /**

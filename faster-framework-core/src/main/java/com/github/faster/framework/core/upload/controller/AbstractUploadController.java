@@ -22,7 +22,7 @@ import java.io.IOException;
  */
 public abstract class AbstractUploadController {
     @Autowired
-    private IUploadService uploadService;
+    protected IUploadService uploadService;
 
 
     /**

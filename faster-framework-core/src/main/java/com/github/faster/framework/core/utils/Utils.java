@@ -3,6 +3,9 @@ package com.github.faster.framework.core.utils;
 import org.springframework.cglib.beans.BeanMap;
 import org.springframework.util.DigestUtils;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -105,5 +108,21 @@ public class Utils {
                 .map(key -> key.concat("=").concat(map.get(key) + ""))
                 .collect(Collectors.joining("&"));
         return md5(signStr + secret);
+    }
+
+    /**
+     * inputstream 转 byte[]数组
+     * @param input 输入流
+     * @return byt[]数组
+     * @throws IOException 异常
+     */
+    public static byte[] inputStreamToByteArray(InputStream input) throws IOException {
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        byte[] buffer = new byte[4096];
+        int n = 0;
+        while (-1 != (n = input.read(buffer))) {
+            output.write(buffer, 0, n);
+        }
+        return output.toByteArray();
     }
 }
