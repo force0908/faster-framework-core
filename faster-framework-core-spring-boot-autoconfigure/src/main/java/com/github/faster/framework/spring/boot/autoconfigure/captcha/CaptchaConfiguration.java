@@ -8,13 +8,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 
+ *
  * @author zhangbowen
  */
 @Configuration
 public class CaptchaConfiguration {
 
     /**
+     *
+     * @param jwtService 加密服务
      * @return 默认的图形验证码
      */
     @Bean
