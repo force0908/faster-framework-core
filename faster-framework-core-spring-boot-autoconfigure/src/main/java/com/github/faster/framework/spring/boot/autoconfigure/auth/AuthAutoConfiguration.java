@@ -4,6 +4,7 @@ import com.github.faster.framework.core.auth.JwtService;
 import com.github.faster.framework.core.auth.app.interceptor.AppAuthInterceptor;
 import com.github.faster.framework.spring.boot.autoconfigure.ProjectProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -23,12 +24,15 @@ public class AuthAutoConfiguration {
     private AuthProperties authProperties;
     @Autowired
     private ProjectProperties projectProperties;
+    @Value("${spring.profiles.active}")
+    private String env;
 
     @Bean
     public JwtService jwtService() {
         JwtService jwtService = new JwtService();
         jwtService.setBase64Security(this.projectProperties.getBase64Secret());
         jwtService.setMultipartTerminal(authProperties.isMultipartTerminal());
+        jwtService.setEnv(env);
         return jwtService;
     }
 

@@ -17,6 +17,7 @@ public class JwtService {
     public static final String JWT_TOKEN_PREFIX = "jwt-token:";
     private String base64Security;
     private boolean multipartTerminal;
+    private String env;
 
     /**
      * 解密，使用项目配置秘钥
@@ -37,9 +38,17 @@ public class JwtService {
      */
     private Claims parseToken(String token, String base64Security) {
         try {
-            return Jwts.parser()
+            Claims claims = Jwts.parser()
                     .setSigningKey(DatatypeConverter.parseBase64Binary(base64Security))
                     .parseClaimsJws(token).getBody();
+            if (claims == null) {
+                return null;
+            }
+            //如果环境相同
+            if (this.env.equals(claims.get("env", String.class))) {
+                return claims;
+            }
+            return null;
         } catch (ExpiredJwtException ex) {
             return null;
         }
@@ -81,6 +90,7 @@ public class JwtService {
                 .setHeaderParam("typ", "JWT")
                 .setAudience(audience.toString())
                 .claim("timestamp", nowMillis)
+                .claim("env", env)
                 .signWith(signatureAlgorithm, signingKey);
         //添加Token过期时间
         if (expSecond > 0) {
