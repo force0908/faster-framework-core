@@ -29,7 +29,19 @@ public abstract class IUploadService {
     public abstract UploadToken preload(UploadRequest uploadRequest);
 
     /**
-     * 上传文件
+     * 通过multipartFile上传文件，无token
+     *
+     * @param uploadFile    文件
+     * @param uploadRequest 请求实体
+     * @return 上传成功实体
+     * @throws IOException ioexception
+     */
+    public UploadSuccess upload(MultipartFile uploadFile, UploadRequest uploadRequest) throws IOException {
+        return this.upload(uploadFile, uploadRequest, null);
+    }
+
+    /**
+     * 通过multipartFile上传文件，有token
      *
      * @param uploadFile    文件
      * @param uploadRequest 请求实体
@@ -39,24 +51,49 @@ public abstract class IUploadService {
      */
     public abstract UploadSuccess upload(MultipartFile uploadFile, UploadRequest uploadRequest, String token) throws IOException;
 
+
     /**
-     * 上传文件
+     * 通过stream上传文件，无token
+     *
+     * @param uploadStream  文件流
+     * @param uploadRequest 请求实体
+     * @return 上传成功实体
+     * @throws IOException ioexception
+     */
+    public UploadSuccess upload(InputStream uploadStream, UploadRequest uploadRequest) throws IOException {
+        return this.upload(uploadStream, uploadRequest, null);
+    }
+
+    /**
+     * 通过stream上传文件，有token
      *
      * @param uploadStream  上传的stream流
      * @param uploadRequest 请求实体
-     * @return 上传成功实体
      * @param token         签名字符串
+     * @return 上传成功实体
      * @throws IOException ioexception
      */
     public abstract UploadSuccess upload(InputStream uploadStream, UploadRequest uploadRequest, String token) throws IOException;
 
     /**
-     * 上传文件
+     * 通过字节数组上传文件，无token
+     *
+     * @param uploadByte    字节数组
+     * @param uploadRequest 请求实体
+     * @return 上传成功实体
+     * @throws IOException ioexception
+     */
+    public UploadSuccess upload(byte[] uploadByte, UploadRequest uploadRequest) throws IOException {
+        return this.upload(uploadByte, uploadRequest, null);
+    }
+
+    /**
+     * 通过字节数组上传文件，有token
      *
      * @param uploadByte    上传的字节数组
      * @param uploadRequest 请求实体
-     * @return 上传成功实体
      * @param token         签名字符串
+     * @return 上传成功实体
      * @throws IOException ioexception
      */
     public abstract UploadSuccess upload(byte[] uploadByte, UploadRequest uploadRequest, String token) throws IOException;
