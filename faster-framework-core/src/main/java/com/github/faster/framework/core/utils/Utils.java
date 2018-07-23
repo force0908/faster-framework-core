@@ -8,10 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -105,13 +102,20 @@ public class Utils {
     public static <T> String signWithSort(T o, String secret) {
         Map<String, Object> map = beanToMap(o);
         String signStr = map.keySet().stream().sorted()
-                .map(key -> key.concat("=").concat(map.get(key) + ""))
+                .map(key -> {
+                    Object value = map.get(key);
+                    if (value == null) {
+                        return null;
+                    }
+                    return key.concat("=").concat(value + "");
+                }).filter(Objects::nonNull)
                 .collect(Collectors.joining("&"));
         return md5(signStr + secret);
     }
 
     /**
      * inputstream 转 byte[]数组
+     *
      * @param input 输入流
      * @return byt[]数组
      * @throws IOException 异常
