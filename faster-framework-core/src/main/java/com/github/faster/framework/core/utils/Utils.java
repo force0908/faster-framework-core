@@ -141,9 +141,9 @@ public class Utils {
         if (StringUtils.isEmpty(fileName)) {
             return "";
         }
-        int suffixIndex = fileName.indexOf(".");
+        int suffixIndex = fileName.lastIndexOf(".");
         if (suffixIndex > -1) {
-            return fileName.substring(suffixIndex - 1);
+            return fileName.substring(suffixIndex);
         }
         return "";
     }
@@ -158,9 +158,9 @@ public class Utils {
         if (StringUtils.isEmpty(fileName)) {
             return "";
         }
-        int suffixIndex = fileName.indexOf(".");
+        int suffixIndex = fileName.lastIndexOf(".");
         if (suffixIndex > -1) {
-            return fileName.substring(suffixIndex);
+            return fileName.substring(suffixIndex + 1);
         }
         return "";
     }
