@@ -2,6 +2,7 @@ package com.github.faster.framework.core.utils;
 
 import org.springframework.cglib.beans.BeanMap;
 import org.springframework.util.DigestUtils;
+import org.springframework.util.StringUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -128,5 +129,39 @@ public class Utils {
             output.write(buffer, 0, n);
         }
         return output.toByteArray();
+    }
+
+    /**
+     * 获取文件名后缀，携带小数点
+     *
+     * @param fileName 文件名称
+     * @return 后缀名称
+     */
+    public static String fileSuffixWithPoint(String fileName) {
+        if (StringUtils.isEmpty(fileName)) {
+            return "";
+        }
+        int suffixIndex = fileName.indexOf(".");
+        if (suffixIndex > -1) {
+            return fileName.substring(suffixIndex - 1);
+        }
+        return "";
+    }
+
+    /**
+     * 获取文件名后缀，不携带小数点
+     *
+     * @param fileName 文件名称
+     * @return 后缀名称
+     */
+    public static String fileSuffix(String fileName) {
+        if (StringUtils.isEmpty(fileName)) {
+            return "";
+        }
+        int suffixIndex = fileName.indexOf(".");
+        if (suffixIndex > -1) {
+            return fileName.substring(suffixIndex);
+        }
+        return "";
     }
 }

@@ -59,7 +59,7 @@ public abstract class AbstractUploadController {
      * @param fileName 文件名称
      * @return 文件流
      */
-    @GetMapping("/files/{fileName}")
+    @GetMapping("/media/{fileName}")
     public ResponseEntity preview(@PathVariable String fileName) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);

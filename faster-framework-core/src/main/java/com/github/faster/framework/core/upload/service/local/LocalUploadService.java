@@ -72,7 +72,7 @@ public class LocalUploadService extends IUploadService {
 
     private UploadSuccess uploadSuccess(String fileName) {
         UploadSuccess uploadSuccess = new UploadSuccess();
-        uploadSuccess.setUrl(urlPrefix + "/files/" + fileName);
+        uploadSuccess.setUrl(urlPrefix + "/media/" + fileName);
         return uploadSuccess;
     }
 
@@ -80,7 +80,7 @@ public class LocalUploadService extends IUploadService {
     public UploadSuccess upload(MultipartFile multipartFile, UploadRequest uploadRequest, String token) throws IOException {
         //验证签名
         signValid(uploadRequest, token);
-        String fileName = getFileName(uploadRequest);
+        String fileName = getFileName(uploadRequest) + Utils.fileSuffixWithPoint(multipartFile.getOriginalFilename());
         File file = new File(fileDir, fileName);
         //验证父目录是否存在
         if (!parentDirValid(file)) {
