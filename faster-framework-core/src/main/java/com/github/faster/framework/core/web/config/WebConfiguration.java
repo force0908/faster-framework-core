@@ -83,4 +83,9 @@ public class WebConfiguration implements WebMvcConfigurer, WebMvcRegistrations {
     public Converter<String, LocalDate> localDateConvert() {
         return new LocalDateFormatter.LocalDateConverter();
     }
+
+    @Bean
+    public static RequestContextBeanFactoryPostProcessor requestContextBeanFactoryPostProcessor(){
+        return new RequestContextBeanFactoryPostProcessor();
+    }
 }

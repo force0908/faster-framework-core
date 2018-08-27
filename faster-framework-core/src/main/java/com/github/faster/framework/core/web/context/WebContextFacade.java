@@ -10,7 +10,7 @@ public class WebContextFacade {
 
     public static RequestContext getRequestContext() {
         RequestContext requestContext = requestContextThreadLocal.get();
-        return requestContext == null ? new RequestContext() : requestContext;
+        return requestContext == null ? new RequestContextConcrete() : requestContext;
     }
 
     public static void setRequestContext(RequestContext requestContext) {
