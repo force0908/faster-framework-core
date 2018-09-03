@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
 public class UploadAutoConfiguration {
 
     @Configuration
-    @ConditionalOnProperty(prefix = "faster.upload", name = "mode", havingValue = "local", matchIfMissing = true)
+    @ConditionalOnProperty(prefix = "faster.upload", name = "mode", havingValue = "local")
     @EnableConfigurationProperties({ProjectProperties.class, LocalUploadProperties.class})
     @ConditionalOnMissingBean(IUploadService.class)
     public static class LocalUploadConfiguration {

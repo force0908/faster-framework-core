@@ -15,5 +15,5 @@ public class SmsCodeProperties {
     //超时时间，默认15分钟
     private long expire = 60 * 15;
     //是否开启
-    private boolean enable;
+    private boolean enabled = true;
 }
