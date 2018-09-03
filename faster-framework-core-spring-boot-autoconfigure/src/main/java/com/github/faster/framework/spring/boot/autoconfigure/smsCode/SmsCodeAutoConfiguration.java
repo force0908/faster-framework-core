@@ -28,7 +28,7 @@ public class SmsCodeAutoConfiguration {
      */
     @Bean
     @ConditionalOnMissingBean(ISmsCodeService.class)
-    @ConditionalOnProperty(prefix = "faster.sms.code", name = "debug", havingValue = "true")
+    @ConditionalOnProperty(prefix = "faster.sms.code", name = "debug", havingValue = "true", matchIfMissing = true)
     public ISmsCodeService debugSmsCode(SmsCodeProperties smsCodeProperties) {
         return new ISmsCodeService(smsCodeProperties.isDebug(), smsCodeProperties.getExpire()) {
             @Override
