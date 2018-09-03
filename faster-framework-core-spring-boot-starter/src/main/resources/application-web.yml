@@ -16,6 +16,12 @@ spring:
       max-request-size: 100MB
 ---
 spring:
+  profiles: dev
+faster:
+  sms:
+    debug: true
+---
+spring:
   profiles: prod
 logging:
   level:

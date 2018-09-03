@@ -19,6 +19,7 @@ import java.util.Base64;
 public abstract class ICaptchaService {
     protected JwtService jwtService;
     protected ConfigurableCaptchaService configurableCaptchaService;
+    private static final String CAPTCHA_TOKEN_PREFIX = "captcha-";
 
     public ICaptchaService(JwtService jwtService) {
         this.jwtService = jwtService;
@@ -26,13 +27,14 @@ public abstract class ICaptchaService {
 
     /**
      * 验证图形验证码是否有效
+     *
      * @param captcha 验证码
-     * @param token token
+     * @param token   token
      * @return true or false
      */
-    public boolean validCaptcha(String captcha, String token) {
+    public boolean valid(String captcha, String token) {
         Claims claims = jwtService.parseToken(token);
-        return claims != null && captcha.equals(claims.getAudience());
+        return claims != null && (CAPTCHA_TOKEN_PREFIX + captcha).equalsIgnoreCase(Utils.md5(CAPTCHA_TOKEN_PREFIX + claims.getAudience()));
     }
 
     /**
@@ -43,7 +45,7 @@ public abstract class ICaptchaService {
     public CaptchaBean generateCaptcha() {
         Captcha captcha = configurableCaptchaService.getCaptcha();
         String captchaBase64 = imgToBase64(captcha.getImage());
-        String token = jwtService.createToken(captcha.getWord(), Utils.MINUTE);
+        String token = jwtService.createToken(Utils.md5(CAPTCHA_TOKEN_PREFIX + captcha.getWord()), Utils.MINUTE);
         return new CaptchaBean(token, "data:image/png;base64," + captchaBase64);
     }
 

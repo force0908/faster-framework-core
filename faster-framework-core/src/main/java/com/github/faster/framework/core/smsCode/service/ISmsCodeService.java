@@ -1,4 +1,4 @@
-package com.github.faster.framework.core.sms.service;
+package com.github.faster.framework.core.smsCode.service;
 
 import com.github.faster.framework.core.cache.context.CacheFacade;
 import com.github.faster.framework.core.utils.Utils;
@@ -8,13 +8,13 @@ import org.springframework.util.StringUtils;
  * @author zhangbowen
  * @since 2018/8/27
  */
-public abstract class ISmsService {
+public abstract class ISmsCodeService {
     //是否为调试环境
     protected boolean debug;
     //超时时间
     protected long expire;
 
-    public ISmsService(boolean debug, long expire) {
+    public ISmsCodeService(boolean debug, long expire) {
         this.debug = debug;
         this.expire = expire;
     }
@@ -37,7 +37,29 @@ public abstract class ISmsService {
         if (success) {
             CacheFacade.set(phone, code, expire);
         }
-        return this.send(phone, generateCode());
+        return success;
+    }
+
+
+    /**
+     * 验证短信验证码
+     *
+     * @param phone 手机号
+     * @param code  短信验证码
+     * @return true/false
+     */
+    public boolean valid(String phone, String code) {
+        if (debug) {
+            return true;
+        }
+        if (StringUtils.isEmpty(phone) || StringUtils.isEmpty(code)) {
+            return false;
+        }
+        String existCode = CacheFacade.get(phone);
+        if (code.equals(existCode)) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -74,11 +96,10 @@ public abstract class ISmsService {
     }
 
     /**
-     * 发送验证码
-     *
+     * 发送短信验证码
      * @param phone 手机号
-     * @param code  验证码
-     * @return true or false
+     * @param code 验证码
+     * @return true/false
      */
     protected abstract boolean send(String phone, String code);
 }
