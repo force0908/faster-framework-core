@@ -14,12 +14,6 @@ spring:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
----
-spring:
-  profiles: prod
-logging:
-  level:
-    root: warn
 server:
   tomcat:
     accept-count: 250

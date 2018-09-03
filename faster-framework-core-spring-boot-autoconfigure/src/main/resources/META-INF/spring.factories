@@ -3,4 +3,5 @@ com.github.faster.framework.spring.boot.autoconfigure.cache.CacheAutoConfigurati
 com.github.faster.framework.spring.boot.autoconfigure.web.WebAutoConfiguration,\
 com.github.faster.framework.spring.boot.autoconfigure.mybatis.TkMybatisAutoConfiguration,\
 com.github.faster.framework.spring.boot.autoconfigure.upload.UploadAutoConfiguration,\
-com.github.faster.framework.spring.boot.autoconfigure.captcha.CaptchaConfiguration
+com.github.faster.framework.spring.boot.autoconfigure.captcha.CaptchaConfiguration,\
+com.github.faster.framework.spring.boot.autoconfigure.smsCode.SmsCodeAutoConfiguration
