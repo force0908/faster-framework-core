@@ -1,11 +1,6 @@
 package com.github.faster.framework.spring.boot.autoconfigure.smsCode;
 
 import com.github.faster.framework.core.smsCode.service.ISmsCodeService;
-import com.github.faster.framework.core.upload.service.IUploadService;
-import com.github.faster.framework.core.upload.service.local.LocalUploadService;
-import com.github.faster.framework.spring.boot.autoconfigure.ProjectProperties;
-import com.github.faster.framework.spring.boot.autoconfigure.upload.local.LocalUploadProperties;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
