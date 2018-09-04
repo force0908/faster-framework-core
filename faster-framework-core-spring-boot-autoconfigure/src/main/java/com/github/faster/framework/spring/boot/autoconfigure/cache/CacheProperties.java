@@ -12,9 +12,18 @@ public class CacheProperties {
     /**
      * 是否开启缓存
      */
-    private boolean enabled = true;
+    private boolean enabled;
     /**
-     * 是否为本地模式
+     * Redis缓存配置
      */
-    private boolean local = true;
+    private RedisProperties redis = new RedisProperties();
+
+    @ConfigurationProperties(prefix = "faster.cache.redis")
+    @Data
+    public static class RedisProperties {
+        /**
+         * 是否开启redis缓存
+         */
+        private boolean enabled;
+    }
 }

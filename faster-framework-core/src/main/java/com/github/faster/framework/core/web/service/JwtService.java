@@ -1,6 +1,5 @@
-package com.github.faster.framework.core.auth;
+package com.github.faster.framework.core.web.service;
 
-import com.github.faster.framework.core.cache.context.CacheFacade;
 import io.jsonwebtoken.*;
 import lombok.Data;
 
@@ -11,14 +10,12 @@ import java.util.Date;
 
 /**
  * @author zhangbowen
+ * @since 2018/9/4
  */
 @Data
 public class JwtService {
-    public static final String JWT_TOKEN_PREFIX = "jwt-token:";
     private String base64Security;
-    private boolean multipartTerminal;
     private String env;
-
     /**
      * 解密，使用项目配置秘钥
      *
@@ -55,22 +52,6 @@ public class JwtService {
     }
 
     /**
-     * 生成token,使用项目配置秘钥，存入缓存
-     *
-     * @param audience  接收者
-     * @param expSecond 过期时间(秒)
-     * @return String
-     */
-    public String createToken(Object audience, long expSecond) {
-        String token = createToken(audience, expSecond, this.base64Security);
-        //如果不允许多端登录，设置token到缓存中
-        if (!multipartTerminal) {
-            CacheFacade.set(JWT_TOKEN_PREFIX + audience.toString(), token, expSecond);
-        }
-        return token;
-    }
-
-    /**
      * 生成token
      *
      * @param audience       接收者
@@ -100,5 +81,16 @@ public class JwtService {
         }
         //生成Token
         return builder.compact();
+    }
+
+    /**
+     * 生成token,使用项目配置秘钥，存入缓存
+     *
+     * @param audience  接收者
+     * @param expSecond 过期时间(秒)
+     * @return String
+     */
+    public String createToken(Object audience, long expSecond) {
+        return createToken(audience, expSecond, this.base64Security);
     }
 }

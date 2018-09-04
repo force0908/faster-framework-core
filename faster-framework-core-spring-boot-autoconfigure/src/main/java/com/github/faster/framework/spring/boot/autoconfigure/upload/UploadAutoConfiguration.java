@@ -3,8 +3,6 @@ package com.github.faster.framework.spring.boot.autoconfigure.upload;
 import com.github.faster.framework.core.upload.service.IUploadService;
 import com.github.faster.framework.core.upload.service.local.LocalUploadService;
 import com.github.faster.framework.spring.boot.autoconfigure.ProjectProperties;
-import com.github.faster.framework.spring.boot.autoconfigure.upload.local.LocalUploadProperties;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -19,17 +17,13 @@ import org.springframework.context.annotation.Configuration;
 public class UploadAutoConfiguration {
 
     @Configuration
-    @ConditionalOnProperty(prefix = "faster.upload", name = "mode", havingValue = "local")
-    @EnableConfigurationProperties({ProjectProperties.class, LocalUploadProperties.class})
+    @ConditionalOnProperty(prefix = "faster.upload.local", name = "enabled", havingValue = "true")
+    @EnableConfigurationProperties({ProjectProperties.class, UploadProperties.LocalUploadProperties.class})
     @ConditionalOnMissingBean(IUploadService.class)
     public static class LocalUploadConfiguration {
-        @Autowired
-        private ProjectProperties projectProperties;
-        @Autowired
-        private LocalUploadProperties localUploadProperties;
 
         @Bean
-        public IUploadService localUpload() {
+        public IUploadService localUpload(ProjectProperties projectProperties, UploadProperties.LocalUploadProperties localUploadProperties) {
             return new LocalUploadService(localUploadProperties.getFileDir(), localUploadProperties.getUrlPrefix(), projectProperties.getBase64Secret());
         }
     }

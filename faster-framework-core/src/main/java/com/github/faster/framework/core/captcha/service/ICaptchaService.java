@@ -2,10 +2,11 @@ package com.github.faster.framework.core.captcha.service;
 
 import com.github.bingoohuang.patchca.custom.ConfigurableCaptchaService;
 import com.github.bingoohuang.patchca.service.Captcha;
-import com.github.faster.framework.core.auth.JwtService;
 import com.github.faster.framework.core.captcha.bean.CaptchaBean;
 import com.github.faster.framework.core.utils.Utils;
+import com.github.faster.framework.core.web.service.JwtService;
 import io.jsonwebtoken.Claims;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.imageio.ImageIO;
 import java.awt.image.RenderedImage;
@@ -17,13 +18,11 @@ import java.util.Base64;
  * @author zhangbowen
  */
 public abstract class ICaptchaService {
-    protected JwtService jwtService;
+    @Autowired
+    private JwtService jwtService;
     protected ConfigurableCaptchaService configurableCaptchaService;
-    private static final String CAPTCHA_TOKEN_PREFIX = "captcha-";
+    private static final String CAPTCHA_TOKEN_PREFIX = "captcha:";
 
-    public ICaptchaService(JwtService jwtService) {
-        this.jwtService = jwtService;
-    }
 
     /**
      * 验证图形验证码是否有效

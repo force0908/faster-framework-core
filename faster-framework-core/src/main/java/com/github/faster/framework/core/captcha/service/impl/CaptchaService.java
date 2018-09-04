@@ -5,17 +5,13 @@ import com.github.bingoohuang.patchca.custom.ConfigurableCaptchaService;
 import com.github.bingoohuang.patchca.filter.predefined.CurvesRippleFilterFactory;
 import com.github.bingoohuang.patchca.word.AdaptiveRandomWordFactory;
 import com.github.bingoohuang.patchca.word.RandomWordFactory;
-import com.github.faster.framework.core.auth.JwtService;
+import com.github.faster.framework.core.auth.AuthService;
 import com.github.faster.framework.core.captcha.service.ICaptchaService;
 
 import javax.annotation.PostConstruct;
 import java.awt.*;
 
 public class CaptchaService extends ICaptchaService {
-
-    public CaptchaService(JwtService jwtService) {
-        super(jwtService);
-    }
 
     @PostConstruct
     public void init() {
