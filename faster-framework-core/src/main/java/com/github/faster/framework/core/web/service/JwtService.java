@@ -46,7 +46,7 @@ public class JwtService {
                 return claims;
             }
             return null;
-        } catch (ExpiredJwtException ex) {
+        } catch (Exception e){
             return null;
         }
     }
