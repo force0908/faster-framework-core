@@ -1,12 +1,13 @@
 package com.github.faster.framework.core.entity;
 
-import com.github.faster.framework.core.mybatis.model.BasePager;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.faster.framework.core.utils.sequence.Sequence;
 import com.github.faster.framework.core.web.context.WebContextFacade;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -15,8 +16,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public abstract class BaseEntity extends BasePager implements Serializable {
-    @Id
+public abstract class BaseEntity implements Serializable {
     private Long id;
     private Long createBy;
     private Long updateBy;
@@ -25,6 +25,17 @@ public abstract class BaseEntity extends BasePager implements Serializable {
     private Integer sort;
     private String remark;
     private Integer deleted;
+    //页数
+    @TableField(exist = false)
+    private Integer current = 1;
+    //每页数据，默认10条
+    @TableField(exist = false)
+    private Integer size = 10;
+
+    public <T> IPage<T> toPage() {
+        return new Page<>(current, size);
+    }
+
 
     /**
      * 预插入方法

@@ -13,7 +13,5 @@ spring:
         testOnReturn: false
         poolPreparedStatements: false
         filters: wall
-mybatis:
+mybatis-plus:
   mapper-locations: classpath*:**/mapper/xml/*Mapper.xml
-  configuration:
-    map-underscore-to-camel-case: true
