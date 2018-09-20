@@ -1,6 +1,7 @@
 package com.github.faster.framework.core.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.faster.framework.core.utils.sequence.Sequence;
@@ -24,6 +25,7 @@ public abstract class BaseEntity implements Serializable {
     private LocalDateTime updateDate;
     private Integer sort;
     private String remark;
+    @TableLogic
     private Integer deleted;
     //页数
     @TableField(exist = false)

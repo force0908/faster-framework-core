@@ -1,6 +1,8 @@
 package com.github.faster.framework.spring.boot.autoconfigure.mybatis;
 
+import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
@@ -20,5 +22,13 @@ public class MybatisPlusAutoConfiguration {
     @Bean
     public PaginationInterceptor paginationInterceptor() {
         return new PaginationInterceptor();
+    }
+
+    /**
+     * 逻辑删除
+     */
+    @Bean
+    public ISqlInjector sqlInjector() {
+        return new LogicSqlInjector();
     }
 }
