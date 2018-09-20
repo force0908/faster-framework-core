@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class MybatisPlusAutoConfiguration {
     /**
      * 分页插件
+     * @return PaginationInterceptor
      */
     @Bean
     public PaginationInterceptor paginationInterceptor() {
@@ -26,6 +27,7 @@ public class MybatisPlusAutoConfiguration {
 
     /**
      * 逻辑删除
+     * @return ISqlInjector
      */
     @Bean
     public ISqlInjector sqlInjector() {

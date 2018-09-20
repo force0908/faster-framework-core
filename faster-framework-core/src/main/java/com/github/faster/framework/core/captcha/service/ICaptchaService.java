@@ -33,7 +33,7 @@ public abstract class ICaptchaService {
      */
     public boolean valid(String captcha, String token) {
         Claims claims = jwtService.parseToken(token);
-        return claims != null && (CAPTCHA_TOKEN_PREFIX + captcha).equalsIgnoreCase(Utils.md5(CAPTCHA_TOKEN_PREFIX + claims.getAudience()));
+        return claims != null && (CAPTCHA_TOKEN_PREFIX + Utils.md5(captcha)).equalsIgnoreCase(claims.getAudience());
     }
 
     /**
@@ -44,7 +44,7 @@ public abstract class ICaptchaService {
     public CaptchaBean generateCaptcha() {
         Captcha captcha = configurableCaptchaService.getCaptcha();
         String captchaBase64 = imgToBase64(captcha.getImage());
-        String token = jwtService.createToken(Utils.md5(CAPTCHA_TOKEN_PREFIX + captcha.getWord()), Utils.MINUTE);
+        String token = jwtService.createToken(CAPTCHA_TOKEN_PREFIX + Utils.md5(captcha.getWord()), Utils.MINUTE);
         return new CaptchaBean(token, "data:image/png;base64," + captchaBase64);
     }
 

@@ -12,6 +12,7 @@ spring:
         testOnBorrow: false
         testOnReturn: false
         poolPreparedStatements: false
-        filters: wall
+        filters: stat,slf4j
+
 mybatis-plus:
   mapper-locations: classpath*:**/mapper/xml/*Mapper.xml
