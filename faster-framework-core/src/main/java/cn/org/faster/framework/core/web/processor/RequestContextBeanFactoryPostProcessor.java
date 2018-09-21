@@ -1,4 +1,4 @@
-package cn.org.faster.framework.core.web.config;
+package cn.org.faster.framework.core.web.processor;
 
 import cn.org.faster.framework.core.web.context.RequestContext;
 import cn.org.faster.framework.core.web.context.WebContextFacade;
