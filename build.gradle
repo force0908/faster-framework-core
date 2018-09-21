@@ -78,7 +78,7 @@ subprojects { ->
                         developers {
                             developer {
                                 id "zhangbowen";
-                                name "Zhang Bowen";
+                                name "Bowen Zhang";
                                 email "515445681@qq.com";
                             }
                         }
