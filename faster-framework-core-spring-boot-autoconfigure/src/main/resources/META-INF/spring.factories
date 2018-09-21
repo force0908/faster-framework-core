@@ -1,7 +1,7 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.github.faster.framework.spring.boot.autoconfigure.cache.CacheAutoConfiguration,\
-com.github.faster.framework.spring.boot.autoconfigure.web.WebAutoConfiguration,\
-com.github.faster.framework.spring.boot.autoconfigure.auth.AuthAutoConfiguration,\
-com.github.faster.framework.spring.boot.autoconfigure.mybatis.MybatisPlusAutoConfiguration,\
-com.github.faster.framework.spring.boot.autoconfigure.upload.UploadAutoConfiguration,\
-com.github.faster.framework.spring.boot.autoconfigure.captcha.CaptchaConfiguration
+cn.org.faster.framework.spring.boot.autoconfigure.cache.CacheAutoConfiguration,\
+cn.org.faster.framework.spring.boot.autoconfigure.web.WebAutoConfiguration,\
+cn.org.faster.framework.spring.boot.autoconfigure.auth.AuthAutoConfiguration,\
+cn.org.faster.framework.spring.boot.autoconfigure.mybatis.MybatisPlusAutoConfiguration,\
+cn.org.faster.framework.spring.boot.autoconfigure.upload.UploadAutoConfiguration,\
+cn.org.faster.framework.spring.boot.autoconfigure.captcha.CaptchaConfiguration

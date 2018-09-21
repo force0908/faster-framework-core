@@ -16,14 +16,14 @@
 - Gradle
 
 ```
-compile 'com.github.faster.framework:faster-framework-core-spring-boot-starter:最新版本'
+compile 'cn.org.faster:faster-framework-core-spring-boot-starter:最新版本'
 ```
 
 - Maven
 
 ```
 <dependency>
-    <groupId>com.github.faster.framework</groupId>
+    <groupId>cn.org.faster</groupId>
     <artifactId>faster-framework-core-spring-boot-starter</artifactId>
     <version>最新版本</version>
 </dependency>
